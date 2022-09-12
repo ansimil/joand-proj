@@ -10,10 +10,13 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-    }
+    },
+    collections: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Collection'
+    }]
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
     timestamps: true,
   }
 );

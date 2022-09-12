@@ -51,9 +51,10 @@ router.post('/login', passport.authenticate('local', {
 
 
 
-router.get("/profile", (req,res,next) => {
-    const loggedUser = req.user
-    res.render('profile', {username : loggedUser.username})
+router.get("/profile", loginCheck(), (req,res,next) => {
+    const loggedUser = req.user    
+    res.render('profile', {user : loggedUser})
+    console.log(loggedUser)
 })
 
 router.get('/logout', (req, res, next) => {
@@ -67,7 +68,5 @@ router.get('/logout', (req, res, next) => {
 router.get('/test', loginCheck(), (req, res, next) => {
     res.render('test')
 });
-
-
 
 module.exports = router;
