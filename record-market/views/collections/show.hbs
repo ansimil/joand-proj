@@ -1,6 +1,10 @@
 <h1>Welcome to {{user.username}}'s collection</h1>
 {{#each user.collections}}
-    <h2>{{name}}</h2>
+    <h2><a href="">{{name}}</a></h2>
+    
+    {{!-- TODO  eddit button--}}
+    <a href="/collections/remove/{{_id}}">Remove</a>
+    <a href="">Edit</a>
 {{/each}}
 <a href="/collections/{{user._id}}/add">Add Collection</a>
 

@@ -14,7 +14,7 @@ router.get('/:id', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get('/:id/add', (req, res, next) => {
+router.get('/:id/add', loginCheck(), (req, res, next) => {
     User.findById(req.params.id)
         .then(userFromDB => {
             res.render('collections/new', {user: userFromDB})
@@ -22,7 +22,7 @@ router.get('/:id/add', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.post('/:id/add', (req, res, next) => {
+router.post('/:id/add', loginCheck(), (req, res, next) => {
     const  { name, description } = req.body
     Collection.create({ name, description})
         .then((createdCollection) => {
@@ -34,7 +34,19 @@ router.post('/:id/add', (req, res, next) => {
             })
         })           
         .catch(err => next(err))
-    })
+})
+
+//collections/remove/{{_id}}
+
+router.get('/remove/:idCollection', loginCheck(), (req,res,next) => {
+    Collection.findByIdAndDelete(req.params.idCollection)
+            .then(()=> {
+                res.redirect('/profile')
+            })
+            .catch(err => next(err))
+})
+
+
 
 
 
