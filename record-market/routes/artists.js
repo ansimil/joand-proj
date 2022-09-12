@@ -35,7 +35,7 @@ router.get('/artist/:name/:id', (req,res,next) => {
     //console.log(albumArr)
   axios.get(`https://api.discogs.com/artists/${req.params.id}`)
   .then(response => {
-  console.log(response.data)
+  console.log(albumArr)
   res.render('artistAlbums', {albums: albumArr, artist: response.data})
   })
   .catch(err => console.log(err)) 
