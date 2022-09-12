@@ -46,6 +46,22 @@ router.get('/remove/:idCollection', loginCheck(), (req,res,next) => {
             .catch(err => next(err))
 })
 
+router.get('/collection/:idCollection', loginCheck(), (req,res,next) => {
+    Collection.findById(req.params.idCollection)
+            .then(collectionByID => {
+                res.render('collections/collection', { collection: collectionByID })
+            })
+            .catch(err => next(err))
+})
+
+router.get('/edit/:idCollection', loginCheck(), (req,res,next) => {
+    Collection.findByIdAndDelete(req.params.idCollection)
+            .then(()=> {
+                res.redirect('/profile')
+            })
+            .catch(err => next(err))
+})
+
 
 
 
