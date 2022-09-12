@@ -1,5 +1,5 @@
 {
-  "name": "record-market",
+  "name": "records-website",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,17 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "cookie-parser": "^1.4.6",
+    "disconnect": "^1.2.2",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "hbs": "^4.2.0",
+    "mongoose": "^6.6.0",
+    "morgan": "^1.10.0",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }
