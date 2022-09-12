@@ -1,0 +1,13 @@
+<h1>Artists</h1>
+
+<div>
+{{#each data}}
+
+<a href="/artist/{{title}}/{{id}}"><h3>{{title}}</h3></a>
+
+<a href="/artist/{{title}}/{{id}}"><img src="{{cover_image}}" alt="Pic of band" height="200" width="200"></a>
+
+<a href="/artist/{{title}}/{{id}}">Show Albums</a>
+
+{{/each}}
+</div>

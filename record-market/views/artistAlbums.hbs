@@ -1,0 +1,25 @@
+<h1>{{artist.name}}</h1>
+
+<h3>Bio</h3>
+<p>{{artist.profile}}</p>
+
+<h3>Links</h3>
+<ul>
+{{#each artist.urls}}    
+<li>{{this}}</li>
+{{/each}}
+</ul>
+
+
+{{#each albums}}
+
+<h3>{{title}}</h3>
+
+<img src="{{cover_image}}" alt="Pic of band" height="200" width="200">
+
+<a href="/artist/{{id}}">Show Tracks</a>
+
+<a href="/artist/{{id}}">Add to collection</a>
+
+{{/each}}
+
