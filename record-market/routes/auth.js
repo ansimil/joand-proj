@@ -11,14 +11,14 @@ router.get('/signup', (req, res, next) => {
 router.post("/signup", (req,res,next) => {
 	const { username, password } = req.body
 	
-	if (password.length < 6) {
-		res.render('signup', { message: 'Your password needs to be min 6 chars' })
-		return
-	}
-	if (username.length === 0) {
+    if (username.length === 0) {
 		res.render('signup', { message: 'Your username cannot be empty' })
 		return
 	}
+	if (password.length < 6) {        
+		res.render('signup', { message: 'Your password needs to be min 6 characters' })
+		return
+	}	
 
 	User.findOne({ username: username })
 		.then(userFromDB => {
@@ -38,20 +38,28 @@ router.post("/signup", (req,res,next) => {
 		})
 });
 
-router.get("/login", (req,res,next) => {
+router.get("/login", (req,res,next) => {        
     res.render("login")
 });
 
 router.post('/login', passport.authenticate('local', {
 	successRedirect: '/profile',
-	failureRedirect: '/login'
+	failureRedirect: '/login' ,    
 }));
+
+
 
 router.get("/profile", (req,res,next) => {
     const loggedUser = req.user
     res.render('profile', {username : loggedUser.username})
 })
 
+router.get('/logout', (req, res, next) => {
+	//req.logout(err => next(err))  
+    req.session.destroy()
+    res.redirect('/')    
+       
+});
 
 
 
