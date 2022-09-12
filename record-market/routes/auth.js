@@ -2,6 +2,8 @@ const router = require("express").Router();
 const User = require('../models/User.model')
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
+const loginCheck = require('../utils/loginCheck')
+
 
 
 router.get('/signup', (req, res, next) => {
@@ -59,6 +61,11 @@ router.get('/logout', (req, res, next) => {
     req.session.destroy()
     res.redirect('/')    
        
+});
+
+
+router.get('/test', loginCheck(), (req, res, next) => {
+    res.render('test')
 });
 
 
