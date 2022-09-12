@@ -46,6 +46,7 @@ app.use(session({
 const User = require('./models/User.model')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
+const bcryptjs = require('bcryptjs')
 
 passport.serializeUser((user, done) => {
 	done(null, user._id)

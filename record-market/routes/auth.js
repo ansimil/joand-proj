@@ -37,5 +37,22 @@ router.post("/signup", (req,res,next) => {
 			}
 		})
 });
-  
+
+router.get("/login", (req,res,next) => {
+    res.render("login")
+});
+
+router.post('/login', passport.authenticate('local', {
+	successRedirect: '/profile',
+	failureRedirect: '/login'
+}));
+
+router.get("/profile", (req,res,next) => {
+    const loggedUser = req.user
+    res.render('profile', {username : loggedUser.username})
+})
+
+
+
+
 module.exports = router;
