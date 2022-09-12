@@ -96,6 +96,9 @@ app.use("/", index);
 const artists = require("./routes/artists");
 app.use("/", artists);
 
+const albums = require("./routes/albums");
+app.use("/", albums);
+
 const auth = require("./routes/auth");
 app.use("/", auth);
 

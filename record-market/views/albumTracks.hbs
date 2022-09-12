@@ -1,0 +1,13 @@
+{{#each tracks.artists}}
+<h1>{{name}}</h1>
+{{/each}}
+
+<h3>{{tracks.title}}</h3>
+
+<img src="{{albums}}" height="200" width="200">
+
+<ul>
+{{#each tracks.tracklist}}    
+<li>{{position}}. {{title}} {{duration}}</li>
+{{/each}}
+</ul>
