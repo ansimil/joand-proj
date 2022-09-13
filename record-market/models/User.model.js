@@ -15,10 +15,10 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Collection'
     }],
-    adress: [{
-      city: String,
-      street: String,
-    }]    
+    adress: {
+      type: String,
+      required: true,
+    }
   },  
 
   {
