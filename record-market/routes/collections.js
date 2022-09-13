@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require('../models/User.model')
 const Collection = require('../models/Collection')
+const Album = require('../models/Album')
 const loginCheck = require('../utils/loginCheck')
 
 
@@ -45,10 +46,12 @@ router.get('/remove/:idCollection', loginCheck(), (req, res, next) => {
             })
             .catch(err => next(err))
 })
-
+//COLLECTION STRUCTURE
 router.get('/collection/:idCollection', loginCheck(), (req, res, next) => {
     Collection.findById(req.params.idCollection)
+            .populate('albums')
             .then(collectionByID => {
+                console.log(collectionByID)
                 res.render('collections/collection', { collection: collectionByID })
             })
             .catch(err => next(err))
@@ -56,6 +59,7 @@ router.get('/collection/:idCollection', loginCheck(), (req, res, next) => {
 
 router.get('/edit/:idCollection', loginCheck(), (req, res, next) => {
     Collection.findById(req.params.idCollection)
+            .populate('albums')
             .then((collectionByID) => {
                 res.render('collections/edit', { collection: collectionByID })
             })
@@ -63,10 +67,11 @@ router.get('/edit/:idCollection', loginCheck(), (req, res, next) => {
 })
 
 router.post('/edit/:idCollection', loginCheck(), (req, res, next) => {
-     const { name, description } = req.body
+     const { name, description, albums } = req.body
      Collection.findByIdAndUpdate(req.params.idCollection, {
         name,
-        description
+        description,
+        albums
     })
     .then (() => {
         res.redirect(`/collections/collection/${req.params.idCollection}`)
