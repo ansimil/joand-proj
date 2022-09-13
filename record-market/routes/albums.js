@@ -4,6 +4,8 @@ const consumerKey = process.env.CONSUMER_KEY
 const secretKey = process.env.SECRET_KEY
 var Discogs = require('disconnect').Client;
 const passport = require('passport')
+const User = require('../models/User.model')
+
 var dis = new Discogs({
 	consumerKey: consumerKey, 
 	consumerSecret: secretKey
