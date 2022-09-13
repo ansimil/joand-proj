@@ -1,8 +1,12 @@
 <h1>Welcome to {{user.username}}'s collection</h1>
 {{#each user.collections}}
     <h2><a href="/collections/collection/{{_id}}">{{name}}</a></h2>
+    {{#if ../auth}}
     <a href="/collections/remove/{{_id}}">Remove</a>
     <a href="/collections/edit/{{_id}}">Edit</a>
+    {{/if}}
 {{/each}}
+{{#if auth}}
 <a href="/collections/{{user._id}}/add">Add Collection</a>
+{{/if}}
 
