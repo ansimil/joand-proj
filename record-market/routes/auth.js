@@ -15,18 +15,18 @@ router.post("/signup", (req,res,next) => {
 	const { username, password } = req.body
 	
     if (username.length === 0) {
-		res.render('signup', { message: 'Your username cannot be empty' })
+		res.render('signup', { message: 'Your username cannot be empty', auth: req.isAuthenticated() })
 		return
 	}
 	if (password.length < 6) {        
-		res.render('signup', { message: 'Your password needs to be min 6 characters' })
+		res.render('signup', { message: 'Your password needs to be min 6 characters', auth: req.isAuthenticated() })
 		return
 	}	
 
 	User.findOne({ username: username })
 		.then(userFromDB => {
 			if (userFromDB !== null) {
-				res.render('signup', { message: 'Username is alredy taken' })
+				res.render('signup', { message: 'Username is alredy taken', auth: req.isAuthenticated() })
 			} else {
 				const salt = bcrypt.genSaltSync()
 				const hash = bcrypt.hashSync(password, salt)
@@ -43,7 +43,7 @@ router.post("/signup", (req,res,next) => {
 
 
 router.get("/login", (req,res,next) => {        
-    res.render("login")
+    res.render("login", {auth: req.isAuthenticated()})
 });
 
 router.post('/login', passport.authenticate('local', {
@@ -55,7 +55,8 @@ router.post('/login', passport.authenticate('local', {
 
 router.get("/profile", loginCheck(), (req,res,next) => {
     const loggedUser = req.user    
-    res.render('profile', {user : loggedUser})
+    res.render('profile', {user : loggedUser, auth: req.isAuthenticated()})
+	console.log(req.isAuthenticated())
     console.log(loggedUser)
 })
 
@@ -68,7 +69,7 @@ router.get('/logout', (req, res, next) => {
 
 
 router.get('/test', loginCheck(), (req, res, next) => {
-    res.render('test')
+    res.render('test', {auth: req.isAuthenticated()})
 });
 
 
