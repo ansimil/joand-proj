@@ -29,7 +29,7 @@ router.post('/:id/add', loginCheck(), (req, res, next) => {
     Collection.create({ name, description})
         .then((createdCollection) => {
             User.findByIdAndUpdate(req.params.id, {
-                $push: {collections: [createdCollection] }
+                $push: {collections: createdCollection }
             })
             .then(() => {
                 res.redirect(`/collections/${req.params.id}`)
@@ -42,11 +42,31 @@ router.post('/:id/add', loginCheck(), (req, res, next) => {
 
 router.get('/remove/:idCollection', loginCheck(), (req, res, next) => {
     Collection.findByIdAndDelete(req.params.idCollection)
-            .then(()=> {
-                res.redirect('/profile')
+            .then(()=> {                
+                User.findById(req.user._id)   
+                    .then(userByID => {
+                        userByID.collections.pull(req.params.idCollection)
+                        return userByID.save()
+                        .then(()=> {
+                            res.redirect('/profile')
+                        })
+                    })                                   
+                    
+                console.log(req.user.collections)
+                console.log(req.user)
+                
             })
             .catch(err => next(err))
 })
+
+
+// exports.destroyLink = function(req, res) {
+//     Node.findById(req.params.id)
+//       .then(node => {
+//         node.configuration.links.pull(req.params.linkId)
+//         return node.save()
+//       .then(node => res.send(node.configuration.links))
+//   }
 //COLLECTION STRUCTURE
 router.get('/collection/:idCollection', (req, res, next) => {
     Collection.findById(req.params.idCollection)
@@ -78,7 +98,6 @@ router.post('/edit/:idCollection', loginCheck(), (req, res, next) => {
         res.redirect(`/collections/collection/${req.params.idCollection}`)
     })
 })
-
 
 
 
