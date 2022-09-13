@@ -43,12 +43,27 @@ router.get('/artist/:id', (req,res,next) => {
       })
 
   db.getArtist(req.params.id, function(err, datas){
-    //console.log(albumArr)  
-    res.render('./artistsAlbumsTracks/artistAlbums', {albums: albumArr, artist: datas, auth: req.isAuthenticated()})
+    let membersArr = []
+    let linksArr = []
+    for (let i = 0; i < 5; i++ ){
+      linksArr.push(datas.urls[i])
+    }
+
+    
+    // for (let i = 0; i < 8; i++ ){
+    //   membersArr.push(datas.members[i])
+    // }
+ 
+    let img = datas.images[0].uri
+    res.render('./artistsAlbumsTracks/artistAlbums', {albums: albumArr, artist: datas, img: img, links: linksArr, auth: req.isAuthenticated()})
   })
 
   })
       
+})
+
+router.post('/album/add', (req, res, next)=>{
+  res.redirect('/')
 })
  
 module.exports = router;

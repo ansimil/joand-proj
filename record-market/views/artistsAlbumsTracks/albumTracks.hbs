@@ -4,7 +4,7 @@
 
 <h3>{{tracks.title}}</h3>
 {{#if auth}}
-<a href="/">Add to collection</a>
+<a href="/album/{{tracks.id}}/add">Add to collection</a>
 {{/if}}
 
 <div>
@@ -15,7 +15,7 @@
 <p>Release Year: {{tracks.year}}</p>
 </div>
 <div>
-<p>Sale Price: ${{tracks.lowest_price}}</p>
+<p>Sale Value: ${{tracks.lowest_price}}</p>
 </div>
 
 <div>
