@@ -23,7 +23,7 @@ router.get("/artists", (req, res, next) => {
           }
           })
         //console.log(arr)
-        res.render('artists', {data: arr}) 
+        res.render('artists', {data: arr, auth: req.isAuthenticated()}) 
         //res.redirect('/')
     })
     .catch(err => console.log(err))
@@ -41,7 +41,7 @@ router.get('/artist/:id', (req,res,next) => {
         })
         db.getArtist(req.params.id, function(err, datas){
           //console.log(albumArr)  
-          res.render('artistAlbums', {albums: albumArr, artist: datas})
+          res.render('artistAlbums', {albums: albumArr, artist: datas, auth: req.isAuthenticated()})
         })
         })
       

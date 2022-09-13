@@ -1,3 +1,5 @@
+const loginCheck = require('../../utils/loginCheck')
+
 document.addEventListener(
   "DOMContentLoaded",
   () => {
@@ -5,3 +7,5 @@ document.addEventListener(
   },
   false
 );
+
+
