@@ -3,9 +3,9 @@
 
 <form action="/album/{{releaseId}}/add" method="POST">
 
-<select name="collections" id="collections">
+<select name="collection" id="collection">
 {{#each user.collections}}
- <option>{{name}}</option>
+ <option value="{{_id}}">{{name}}</option>
 {{/each}} 
 </select>
 
