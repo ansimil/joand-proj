@@ -1,6 +1,8 @@
 
 <label for="collections">Select Collection:</label>
-<form action="/album/add" method="POST">
+
+<form action="/album/{{releaseId}}/add" method="POST">
+
 <select name="collections" id="collections">
 {{#each user.collections}}
  <option>{{name}}</option>
@@ -8,4 +10,5 @@
 </select>
 
 <button type="submit">Add album to selected collection</button>
+
 </form>
