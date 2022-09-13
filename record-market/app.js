@@ -82,6 +82,8 @@ passport.use((
 	})
 ))
 
+// google authorization
+
 app.use(passport.initialize())
 app.use(passport.session())
 
