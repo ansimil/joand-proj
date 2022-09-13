@@ -3,7 +3,9 @@
 {{/each}}
 
 <h3>{{tracks.title}}</h3>
+{{#if auth}}
 <a href="/">Add to collection</a>
+{{/if}}
 
 <div>
 <img src="{{imgSrc}}" height="200" width="200">
