@@ -3,7 +3,7 @@ const { default: axios } = require("axios");
 const consumerKey = process.env.CONSUMER_KEY
 const secretKey = process.env.SECRET_KEY
 var Discogs = require('disconnect').Client;
-
+const passport = require('passport')
 var dis = new Discogs({
 	consumerKey: consumerKey, 
 	consumerSecret: secretKey
@@ -20,7 +20,7 @@ router.get('/album/:id', (req,res,next) => {
         //console.log(data)
         if (!data.videos && data.images){
         let img = data.images[0].resource_url
-        res.render('albumTracks', {tracks: data, imgSrc: img})}
+        res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, auth: req.isAuthenticated()})}
         else if (data.videos && data.images){
             let img = data.images[0].resource_url
             let vids = []
@@ -29,7 +29,8 @@ router.get('/album/:id', (req,res,next) => {
             })
             console.log(vids)
             //let vid = data.videos[0].uri.replace("watch?v=", "embed/") 
-            res.render('albumTracks', {tracks: data, imgSrc: img, vids: vids}) 
+            res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, vids: vids, auth: req.isAuthenticated()}) 
+
         }
     }
     else {
