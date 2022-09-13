@@ -14,8 +14,13 @@ const userSchema = new Schema(
     collections: [{
       type: Schema.Types.ObjectId,
       ref: 'Collection'
-    }]
-  },
+    }],
+    adress: [{
+      city: String,
+      street: String,
+    }]    
+  },  
+
   {
     timestamps: true,
   }
