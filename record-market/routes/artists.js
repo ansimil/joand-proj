@@ -3,6 +3,7 @@ const { default: axios } = require("axios");
 const consumerKey = process.env.CONSUMER_KEY
 const secretKey = process.env.SECRET_KEY
 var Discogs = require('disconnect').Client;
+const passport = require('passport')
 
 var dis = new Discogs({
 	consumerKey: consumerKey, 
