@@ -1,5 +1,7 @@
 <h1>{{artist.name}}</h1>
 
+<img src="{{img}}" alt="" height="200" width="200">
+
 <h2>Artist Info:</h2>
 <h3>Bio</h3>
 <p>{{artist.profile}}</p>
@@ -15,7 +17,7 @@
 
 <h3>Links</h3>
 <ul>
-{{#each artist.urls}}    
+{{#each links}}    
 <li>{{this}}</li>
 {{/each}}
 </ul>
@@ -34,8 +36,8 @@
 
 <a href="/album/{{id}}">Show Tracks</a>
 
-{{#if auth}}
-<a href="/album/{{id}}">Add to collection</a>
+{{#if ../auth}}
+<a href="/album/{{id}}/add">Add to collection</a>
 {{/if}}
 
 </div>
