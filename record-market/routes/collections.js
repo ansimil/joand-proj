@@ -88,7 +88,7 @@ router.get('/:idCollection/remove/:idAlbum', loginCheck(), (req, res, next) => {
                     collectionByID.albums.pull(req.params.idAlbum)
                     return collectionByID.save()
                     .then(()=> {
-                        res.redirect(`collections/collection/${req.params.idCollection}`)
+                        res.redirect(`/collections/collection/${req.params.idCollection}`)
                     })
                 })                                 
     })
@@ -106,7 +106,6 @@ router.post('/edit/:idCollection', loginCheck(), (req, res, next) => {
         res.redirect(`/collections/collection/${req.params.idCollection}`)
     })
 })
-
 
 
 
