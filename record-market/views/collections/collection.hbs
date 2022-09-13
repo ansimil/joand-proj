@@ -3,6 +3,7 @@
 {{#if auth}}
 <a href="/collections/edit/{{collection._id}}">Edit</a>
 {{/if}}
+
 {{#if collection.albums}}
 <ph2>Albums:</h2>
     {{#each collection.albums}}
@@ -11,6 +12,11 @@
         <p>{{release}}</p>
         {{#if userPrice}}
             <p>{{userPrice}}</p>
-        {{/if}}   
+        {{/if}} 
+        <a href="/collections/edit/{{collection._id}}">Edit</a>  
     {{/each}}
+{{/if}}
+
+{{#if auth}}
+<a href="/">Add Albums to the collection</a>
 {{/if}}
