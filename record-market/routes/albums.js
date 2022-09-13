@@ -12,13 +12,25 @@ var dis = new Discogs({
 var db = dis.database();
 
 
-router.get('/album/:name/:id', (req,res,next) => {
+router.get('/album/:id', (req,res,next) => {
     let albumArr = []
-    db.getRelease(req.params.id, function(err, data){
-        // console.log(data);
+    db.getMaster(req.params.id, function(err, data){
+         //console.log(data);
         if(data.message !== 'Release not found.'){
+        //console.log(data)
+        if (!data.videos && data.images){
         let img = data.images[0].resource_url
-        res.render('albumTracks', {tracks: data, imgSrc: img})
+        res.render('albumTracks', {tracks: data, imgSrc: img})}
+        else if (data.videos && data.images){
+            let img = data.images[0].resource_url
+            let vids = []
+            data.videos.forEach(video => {
+                vids.push(video.uri.replace("watch?v=", "embed/"))
+            })
+            console.log(vids)
+            //let vid = data.videos[0].uri.replace("watch?v=", "embed/") 
+            res.render('albumTracks', {tracks: data, imgSrc: img, vids: vids}) 
+        }
     }
     else {
         res.render('albumTracks') 

@@ -30,22 +30,22 @@ router.get("/artists", (req, res, next) => {
     
     });
 
-router.get('/artist/:name/:id', (req,res,next) => {
+router.get('/artist/:id', (req,res,next) => {
   let albumArr = []
-  db.getArtistReleases(req.params.id, {page: 1, per_page: 1000}, function(err, data){
+  db.getArtistReleases(req.params.id, {page: 1, per_page: 100}, function(err, data){
+      console.log(data.pagination.pages)
         data.releases.forEach(album => {
-          if (album.type === 'master' && album.thumb !== ''){
+          if (album.type === 'master' && album.thumb !== '' && album.role === 'Main'){
             albumArr.push(album)
           }
         })
-        db.getArtist(req.params.id, function(err, data2){
-          //console.log(data2)  
-          res.render('artistAlbums', {albums: albumArr, artist: data2})
+        db.getArtist(req.params.id, function(err, datas){
+          //console.log(albumArr)  
+          res.render('artistAlbums', {albums: albumArr, artist: datas})
         })
-        
+        })
+      
       })
-    
-  }) 
   // let albumArr = []
   // axios.get(`https://api.discogs.com/artists/${req.params.id}/releases`)
   // .then (response => {

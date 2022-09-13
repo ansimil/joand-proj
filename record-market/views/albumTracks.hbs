@@ -3,11 +3,41 @@
 {{/each}}
 
 <h3>{{tracks.title}}</h3>
+<a href="/">Add to collection</a>
 
+<div>
 <img src="{{imgSrc}}" height="200" width="200">
+</div>
 
-<ul>
+<div>
+<p>Release Year: {{tracks.year}}</p>
+</div>
+<div>
+<p>Sale Price: ${{tracks.lowest_price}}</p>
+</div>
+
+<div>
+<h4>Tracklist:</h4>
+<ol>
 {{#each tracks.tracklist}}    
-<li>{{title}}</li>
+<li>{{title}} {{duration}}</li>
 {{/each}}
-</ul>
+</ol>
+</div>
+
+
+<div>
+{{#if vids}}
+<h3>Videos:</h3>
+
+
+{{#each vids}}
+<div>
+
+<iframe width="560" height="315" src="{{this}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+{{/each}}
+{{/if}}
+
+</div>
