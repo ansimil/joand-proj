@@ -1,6 +1,8 @@
 <h1>Collection {{collection.name}}</h1>
 <p>{{collection.description}}</p>
+{{#if auth}}
 <a href="/collections/edit/{{collection._id}}">Edit</a>
+{{/if}}
 {{#if collection.albums}}
 <ph2>Albums:</h2>
     {{#each collection.albums}}

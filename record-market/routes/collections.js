@@ -3,6 +3,7 @@ const User = require('../models/User.model')
 const Collection = require('../models/Collection')
 const Album = require('../models/Album')
 const loginCheck = require('../utils/loginCheck')
+const passport = require('passport')
 
 
 
@@ -10,7 +11,7 @@ router.get('/:id', (req, res, next) => {
     User.findById(req.params.id)
         .populate('collections')
         .then(userFromDB => {
-            res.render('collections/show', {user: userFromDB})
+            res.render('collections/show', {user: userFromDB, auth: req.isAuthenticated() })
         })
         .catch(err => next(err))
 })
@@ -18,7 +19,7 @@ router.get('/:id', (req, res, next) => {
 router.get('/:id/add', loginCheck(), (req, res, next) => {
     User.findById(req.params.id)
         .then(userFromDB => {
-            res.render('collections/new', {user: userFromDB})
+            res.render('collections/new', {user: userFromDB, auth: req.isAuthenticated()})
         })
         .catch(err => next(err))
 })
@@ -47,12 +48,12 @@ router.get('/remove/:idCollection', loginCheck(), (req, res, next) => {
             .catch(err => next(err))
 })
 //COLLECTION STRUCTURE
-router.get('/collection/:idCollection', loginCheck(), (req, res, next) => {
+router.get('/collection/:idCollection', (req, res, next) => {
     Collection.findById(req.params.idCollection)
             .populate('albums')
             .then(collectionByID => {
                 console.log(collectionByID)
-                res.render('collections/collection', { collection: collectionByID })
+                res.render('collections/collection', { collection: collectionByID, auth: req.isAuthenticated() })
             })
             .catch(err => next(err))
 })
@@ -61,7 +62,7 @@ router.get('/edit/:idCollection', loginCheck(), (req, res, next) => {
     Collection.findById(req.params.idCollection)
             .populate('albums')
             .then((collectionByID) => {
-                res.render('collections/edit', { collection: collectionByID })
+                res.render('collections/edit', { collection: collectionByID, auth: req.isAuthenticated() })
             })
             .catch(err => next(err))
 })
