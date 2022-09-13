@@ -21,7 +21,7 @@ function addMarker(event) {
         .on('dragend', event => document.querySelector('#coordinates').value = `${event.target._lngLat}`)
         count ++
         console.log(event.lngLat)
-        document.querySelector('#coordinates').value = `${event.lngLat}`        
+        document.querySelector('#coordinates').value = `${event.lngLat}`       
         
    }
 }
