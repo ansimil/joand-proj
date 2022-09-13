@@ -62,8 +62,6 @@ router.get('/artist/:id', (req,res,next) => {
       
 })
 
-router.post('/album/add', (req, res, next)=>{
-  res.redirect('/')
-})
+
  
 module.exports = router;

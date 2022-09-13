@@ -1,9 +1,11 @@
 const router = require("express").Router();
 const { default: axios } = require("axios");
+const { Collection } = require("mongoose");
 const consumerKey = process.env.CONSUMER_KEY
 const secretKey = process.env.SECRET_KEY
 var Discogs = require('disconnect').Client;
-const passport = require('passport')
+const passport = require('passport');
+const Album = require("../models/Album");
 const User = require('../models/User.model')
 
 var dis = new Discogs({
@@ -49,10 +51,35 @@ router.get('/album/:id/add', (req, res, next) =>{
     .populate('collections')
     .then(user => {
         console.log(user)
-        res.render('./artistsAlbumsTracks/addAlbumToCollection', {user: user, auth: req.isAuthenticated()})
+        res.render('./artistsAlbumsTracks/addAlbumToCollection', {user: user, auth: req.isAuthenticated(), releaseId: req.params.id})
     })
     .catch(err => next(err))
     })
+
+    router.post('/album/:id/add', (req, res, next)=>{
+
+        db.getMaster(req.params.id, function(err, data){
+        console.log(data)
+        
+        
+        const name = data.title
+        const artist = data.artists[0].name
+        const imgName = data.images[0].type
+        const imgPath = data.images[0].uri 
+        const release = data.year
+        const price = data.lowest_price
+        const userPrice = 0
+        const tracks = []
+        data.tracklist.forEach(track =>{
+            tracks.push({name: track.title, duration: track.duration})
+        })
+        
+
+        Album.create()
+
+        // res.send(req.body)
+      })
+      })
 
 
 
