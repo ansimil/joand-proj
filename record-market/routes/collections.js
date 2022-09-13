@@ -60,13 +60,6 @@ router.get('/remove/:idCollection', loginCheck(), (req, res, next) => {
 })
 
 
-// exports.destroyLink = function(req, res) {
-//     Node.findById(req.params.id)
-//       .then(node => {
-//         node.configuration.links.pull(req.params.linkId)
-//         return node.save()
-//       .then(node => res.send(node.configuration.links))
-//   }
 //COLLECTION STRUCTURE
 router.get('/collection/:idCollection', (req, res, next) => {
     Collection.findById(req.params.idCollection)
@@ -85,6 +78,21 @@ router.get('/edit/:idCollection', loginCheck(), (req, res, next) => {
                 res.render('collections/edit', { collection: collectionByID, auth: req.isAuthenticated() })
             })
             .catch(err => next(err))
+})
+
+router.get('/:idCollection/remove/:idAlbum', loginCheck(), (req, res, next) => {
+    Album.findByIdAndDelete(req.params.idAlbum)
+        .then(()=> {                
+            Collection.findById(req.params.idCollection)   
+                .then(collectionByID => {
+                    collectionByID.albums.pull(req.params.idAlbum)
+                    return collectionByID.save()
+                    .then(()=> {
+                        res.redirect(`collections/collection/${req.params.idCollection}`)
+                    })
+                })                                 
+    })
+    .catch(err => next(err))
 })
 
 router.post('/edit/:idCollection', loginCheck(), (req, res, next) => {
