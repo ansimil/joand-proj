@@ -1,0 +1,10 @@
+<h2>Eadit the collection</h2>
+<form action="/collections/edit/{{collection._id}}" method="POST">
+	<label for="">Name: </label>
+	<input type="text" name="name" value="{{collection.name}}">
+
+	<label for="">Description: </label>
+	<input type="text" name="description" value="{{collection.description}}">
+
+	<button type="sumbmit">Create</button>
+</form>

@@ -46,6 +46,7 @@ app.use(session({
 const User = require('./models/User.model')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
+const bcryptjs = require('bcryptjs')
 
 passport.serializeUser((user, done) => {
 	done(null, user._id)
@@ -81,6 +82,8 @@ passport.use((
 	})
 ))
 
+// google authorization
+
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -101,6 +104,9 @@ app.use("/", albums);
 
 const auth = require("./routes/auth");
 app.use("/", auth);
+
+const collections = require("./routes/collections");
+app.use("/collections", collections);
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
