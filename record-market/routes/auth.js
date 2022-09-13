@@ -10,6 +10,7 @@ router.get('/signup', (req, res, next) => {
      res.render('signup')
 });
 
+
 router.post("/signup", (req,res,next) => {
 	const { username, password } = req.body
 	
@@ -40,6 +41,7 @@ router.post("/signup", (req,res,next) => {
 		})
 });
 
+
 router.get("/login", (req,res,next) => {        
     res.render("login")
 });
@@ -68,5 +70,6 @@ router.get('/logout', (req, res, next) => {
 router.get('/test', loginCheck(), (req, res, next) => {
     res.render('test')
 });
+
 
 module.exports = router;

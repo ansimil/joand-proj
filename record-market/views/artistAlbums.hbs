@@ -1,7 +1,17 @@
 <h1>{{artist.name}}</h1>
 
+<h2>Artist Info:</h2>
 <h3>Bio</h3>
 <p>{{artist.profile}}</p>
+
+<h3>Members</h3>
+<ul>
+{{#each artist.members}} 
+   
+<li>{{this.name}}</li>
+
+{{/each}}
+</ul>
 
 <h3>Links</h3>
 <ul>
@@ -10,16 +20,23 @@
 {{/each}}
 </ul>
 
-
+<div>
+<h2>Releases:</h2>
 {{#each albums}}
 
-<h3>{{title}}</h3>
+<div>
+    
+<a href="/album/{{id}}"><h3>{{title}}</h3></a>
 
-<img src="{{cover_image}}" alt="Pic of band" height="200" width="200">
+<a href="/album/{{id}}"><img src="{{thumb}}" alt="Pic of album" height="100" width="100"></a> 
 
-<a href="/artist/{{id}}">Show Tracks</a>
+<p>Release Year: {{year}}</p>
 
-<a href="/artist/{{id}}">Add to collection</a>
+<a href="/album/{{id}}">Show Tracks</a>
+
+<a href="/album/{{id}}">Add to collection</a>
+
+</div>
 
 {{/each}}
-
+</div>
