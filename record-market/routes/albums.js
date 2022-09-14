@@ -25,42 +25,32 @@ router.get('/album/:id', (req,res,next) => {
     let collectionArr = []
     let usersArr = []
 
-
-
     Album.find({ 'discogsId': req.params.id })
     .then(albumsDB => {
-        console.log(albumsDB)            
-
-        Collection.find({'albums' : albumsDB._id})
-        .then(collectionsDB => {
-        console.log(collectionsDB)
-
-            collectionsDB.forEach(collection => {
-            User.find({'collections': collection._id})
-            .then(usersDB => {
-                usersArr.push(usersDB) 
-            })   
-        })        
-    }) 
-    })
-     
-    db.getMaster(req.params.id, function(err, data){
-        if(data.message !== 'Release not found.'){
-            if (!data.videos && data.images){
-            let img = data.images[0].resource_url
-            res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, auth: req.isAuthenticated(), user: userCoord})}
-
-            else if (data.videos && data.images){
+        albumsDB.forEach(album => {
+            usersArr.push(album.userCoords)
+            console.log( album.userCoords)
+        }) 
+        console.log(usersArr)      
+        db.getMaster(req.params.id, function(err, data){
+            if(data.message !== 'Release not found.'){
+                if (!data.videos && data.images){
                 let img = data.images[0].resource_url
-                let vids = []
-                data.videos.forEach(video => {
-                    vids.push(video.uri.replace("watch?v=", "embed/"))
-                })
-                
-                res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, vids: vids, auth: req.isAuthenticated(), user: userCoord})
+                res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, auth: req.isAuthenticated(), user: userCoord, usersArray: usersArr})}
+    
+                else if (data.videos && data.images){
+                    let img = data.images[0].resource_url
+                    let vids = []
+                    data.videos.forEach(video => {
+                        vids.push(video.uri.replace("watch?v=", "embed/"))
+                    })
+                    
+                    res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, vids: vids, auth: req.isAuthenticated(), user: userCoord, usersArray: usersArr})
+                }
             }
-        }
-    });
+        });
+        
+    })
 
 })
 
@@ -99,13 +89,13 @@ router.post('/album/:id/add', loginCheck(), (req, res, next)=>{
                 const userPrice = 0
                 const tracks = []
                 const discogsId = req.params.id 
-                const userId = req.user._id
+                const userCoords = req.user.coordinates
                 data.tracklist.forEach(track =>{
                     tracks.push({name: track.title, duration: track.duration})
                 })   
                 
         
-                Album.create({ name, artist, imgName, imgPath, release, price, userPrice, tracks, discogsId, userId})
+                Album.create({ name, artist, imgName, imgPath, release, price, userPrice, tracks, discogsId, userCoords})
                 .then((createdAlbum) => {
                     Collection.findByIdAndUpdate(collectionID, {
                         $push: { albums: [createdAlbum] }
