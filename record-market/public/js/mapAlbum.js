@@ -20,24 +20,25 @@ coords.forEach(coord => {
 	new mapboxgl.Marker({
 		color: '#5fbbd0',
 	}).setLngLat(coord)
-	.setPopup(new mapboxgl.Popup()
-
-	.setHTML("<h3>Hello World!</h3>"))        
+	.setPopup(new mapboxgl.Popup().setHTML("<h3>Hello World!</h3>"))        
     .addTo(mapAlbum)  
 })
 
 
 
 const user =  document.querySelector('#userCoord').innerHTML //'LngLat(13.25424296134969, 52.46167289022344)'
-console.log(user)
-const userCord = user.match(/\d+/g)
-const lng =  userCord[0] + '.' + userCord[1] 
-const lat =  userCord[2] + '.' + userCord[3] 
+if (user !== '') {
+	const userCord = user.match(/\d+/g)
+	const lng =  userCord[0] + '.' + userCord[1] 
+	const lat =  userCord[2] + '.' + userCord[3] 
+	
+	new mapboxgl.Marker({
+		color: 'red',
+	}).setLngLat([lng, lat])        
+		.addTo(mapAlbum) 
+} 
 
-new mapboxgl.Marker({
-	color: 'red',
-}).setLngLat([lng, lat])        
-	.addTo(mapAlbum) 
+
 
 	
 	
