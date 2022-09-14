@@ -1,4 +1,4 @@
-<h2>Sing up</h2>
+<h2>Sign up</h2>
 <form action="/signup" method="post">
     <label for="username">Username:</label>
     <input type="text" name="username" id="username">
@@ -9,11 +9,12 @@
     <button type="submit">Sign up</button>
 </form> 
 {{#if message}}
-	<p>{{message}}</p>
+	<p class="message">{{message}}</p>
 {{/if}}
 
 
- <h2>Please choose your location</h2>
+ <h2>Please choose your location:</h2>
+ <h4>Click on the map to drop a marker. Marker can be dragged to accurately show your location</h4>
 
 <div id='map' style='width: 80vw; height: 80vh;'></div>
 
