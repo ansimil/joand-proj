@@ -26,23 +26,22 @@ router.get('/album/:id', (req,res,next) => {
     let usersArr = []
 
 
-    Album.find({ 'discogsId': req.params.id })
-    .then(albumsDB => {
-        console.log(albumsDB)            
+// Album.find({ 'discogsId': req.params.id })
+//     .then(albumsDB => {
+//         console.log(albumsDB)            
+//         albumsDB.forEach(album => {})
+//         Collection.find({'albums' : album._id})
+//         .then(collectionsDB => {
+//         console.log(collectionsDB)
 
-        Collection.find({'albums' : albumsDB._id})
-        .then(collectionsDB => {
-        console.log(collectionsDB)
-
-            collectionsDB.forEach(collection => {
-            User.find({'collections': collection._id})
-            .then(usersDB => {
-                usersArr.push(usersDB) 
-            })   
-        })        
-    }) 
-    })
-     
+//             collectionsDB.forEach(collection => {
+//             User.find({'collections': collection._id})
+//             .then(usersDB => {
+//                 usersArr.push(usersDB) 
+//             })   
+//         })        
+//     }) 
+//     })                 
     db.getMaster(req.params.id, function(err, data){
         if(data.message !== 'Release not found.'){
             if (!data.videos && data.images){
