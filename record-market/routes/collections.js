@@ -65,7 +65,7 @@ router.get('/collection/:idCollection', (req, res, next) => {
     Collection.findById(req.params.idCollection)
             .populate('albums')
             .then(collectionByID => {
-                console.log(collectionByID)
+                //console.log(collectionByID)
                 res.render('collections/collection', { collection: collectionByID, auth: req.isAuthenticated() })
             })
             .catch(err => next(err))

@@ -20,48 +20,45 @@ var db = dis.database();
 
 
 router.get('/album/:id', (req,res,next) => {
-    let albumArr = []
-    let collectionArr = []
     let userCoord = req.user.coordinates
+    let albumsArr = []
+    let collectionArr = []
+    let usersArr = []
 
-    db.getMaster(req.params.id, function(err, data){
-        if(data.message !== 'Release not found.'){
-            Album.find({ 'discogsId': req.params.id })
-            .then(albumsDB => {
-                albumsDB.forEach(album => {
-                Collection.find({'albums' : album._id})
-                .then(collectionsDB => {
-                    collectionsDB.forEach(collection => {
-                    User.find({'collections': collection._id})
-                    .then(usersDB => {
-                            console.log(usersDB)
-                                        })    
-                                    })
-                                })
-                            })
-                        }) 
-                        }
-                    })
+
+    Album.find({ 'discogsId': req.params.id })
+    .then(albumsDB => {
+        console.log(albumsDB)            
+
+        Collection.find({'albums' : albumsDB._id})
+        .then(collectionsDB => {
+        console.log(collectionsDB)
+
+            collectionsDB.forEach(collection => {
+            User.find({'collections': collection._id})
+            .then(usersDB => {
+                usersArr.push(usersDB) 
+            })   
+        })        
+    }) 
+    })
      
-    
-    
     db.getMaster(req.params.id, function(err, data){
         if(data.message !== 'Release not found.'){
-        if (!data.videos && data.images){
-        let img = data.images[0].resource_url
-        res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, auth: req.isAuthenticated(), user: userCoord})}
-        else if (data.videos && data.images){
+            if (!data.videos && data.images){
             let img = data.images[0].resource_url
-            let vids = []
-            data.videos.forEach(video => {
-                vids.push(video.uri.replace("watch?v=", "embed/"))
-            })
-            res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, vids: vids, auth: req.isAuthenticated(), user: userCoord})
-                }
+            res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, auth: req.isAuthenticated(), user: userCoord})}
+
+            else if (data.videos && data.images){
+                let img = data.images[0].resource_url
+                let vids = []
+                data.videos.forEach(video => {
+                    vids.push(video.uri.replace("watch?v=", "embed/"))
+                })
+                
+                res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, vids: vids, auth: req.isAuthenticated(), user: userCoord})
             }
-        else {
-        res.render('./artistsAlbumsTracks/albumTracks') 
-    }
+        }
     });
 
 })
@@ -77,31 +74,51 @@ router.get('/album/:id/add', loginCheck(), (req, res, next) =>{
     })
 
 router.post('/album/:id/add', loginCheck(), (req, res, next)=>{
-    db.getMaster(req.params.id, function(err, data){
-        //console.log(req.params.id) 
-        const discogsId = req.params.id    
-        const name = data.title
-        const artist = data.artists[0].name
-        const imgName = data.images[0].type
-        const imgPath = data.images[0].uri 
-        const release = data.year
-        const price = data.lowest_price
-        const userPrice = 0
-        const tracks = []
-        data.tracklist.forEach(track =>{
-            tracks.push({name: track.title, duration: track.duration})
-        })   
-    const collectionID = req.body.collection
-    Album.create({ name, artist, imgName, imgPath, release, price, userPrice, tracks, discogsId })
-            .then((createdAlbum) => {
-                Collection.findByIdAndUpdate(collectionID, {
-                    $push: { albums: [createdAlbum] }
+    var collectionID = req.body.collection
+    var matchCheck = []
+
+    Collection.findById(req.body.collection)
+    .populate('albums')
+    .then(collection => {
+        
+        collection.albums.forEach(album => {
+            if (album.discogsId == req.params.id){
+            matchCheck.push('match')
+            }
+        })
+
+        if (matchCheck.length < 1) {
+            db.getMaster(req.params.id, function(err, data){ 
+                const name = data.title
+                const artist = data.artists[0].name
+                const imgName = data.images[0].type
+                const imgPath = data.images[0].uri 
+                const release = data.year
+                const price = data.lowest_price
+                const userPrice = 0
+                const tracks = []
+                const discogsId = req.params.id 
+                data.tracklist.forEach(track =>{
+                    tracks.push({name: track.title, duration: track.duration})
+                })   
+                
+        
+                Album.create({ name, artist, imgName, imgPath, release, price, userPrice, tracks, discogsId })
+                .then((createdAlbum) => {
+                    Collection.findByIdAndUpdate(collectionID, {
+                        $push: { albums: [createdAlbum] }
+                    })
+                    .then(() => {
+                        res.redirect(`/collections/collection/${collectionID}`)  
+                    })
                 })
-                .then(() => {
-                    res.redirect(`/collections/collection/${collectionID}`)  
-                })
-      })
-    })
+            }) 
+        }
+        else {
+            res.redirect(`/album/${req.params.id}/add`)
+        }
+    }) 
+    
 });
 
 
