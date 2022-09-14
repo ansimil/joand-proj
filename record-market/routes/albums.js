@@ -26,22 +26,22 @@ router.get('/album/:id', (req,res,next) => {
 
     db.getMaster(req.params.id, function(err, data){
         if(data.message !== 'Release not found.'){
-    Album.find({ 'discogsId': req.params.id })
-    .then(data => {
-        data.forEach(album => {
-        Collection.find({'albums' : album._id})
-        .then(data2 => {
-            data2.forEach(collection => {
-            User.find({'collections': collection._id})
-            .then(data3 => {
-                    console.log(data3)
-                                })    
+            Album.find({ 'discogsId': req.params.id })
+            .then(albumsDB => {
+                albumsDB.forEach(album => {
+                Collection.find({'albums' : album._id})
+                .then(collectionsDB => {
+                    collectionsDB.forEach(collection => {
+                    User.find({'collections': collection._id})
+                    .then(usersDB => {
+                            console.log(usersDB)
+                                        })    
+                                    })
+                                })
                             })
-                        })
+                        }) 
+                        }
                     })
-                 }) 
-                }
-            })
      
     
     
@@ -56,15 +56,11 @@ router.get('/album/:id', (req,res,next) => {
             data.videos.forEach(video => {
                 vids.push(video.uri.replace("watch?v=", "embed/"))
             })
-            //console.log(vids)
-            //let vid = data.videos[0].uri.replace("watch?v=", "embed/") 
-
             res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, vids: vids, auth: req.isAuthenticated(), user: userCoord})
                 }
             }
         else {
-
-        res.render('albumTracks') 
+        res.render('./artistsAlbumsTracks/albumTracks') 
     }
         //console.log('done')
     });
