@@ -11,9 +11,34 @@
         <p>Title: {{name}}</p>
         <img src="{{imgPath}}" alt="cover {{name}}" height="300px" width="300px">
         <p>Release Year: {{release}}</p>
-        {{#if price}}
+        {{#if userPrice}}
+            <p>Price: ${{userPrice}}</p>
+        {{/if}}
+        {{#unless userPrice}}
             <p>Value: ${{price}}</p>
-        {{/if}} 
+        {{/unless}} 
+        
+        {{#if ../auth}}
+        {{!-- TODO --}}
+        <a href="/">
+            <button>Set Price</button>
+        </a>
+        {{/if}}
+        {{#unless ../auth}}
+        {{!-- TODO --}}
+
+        {{#if userPrice}}
+            <a href="/buy/:idOwener/:idBuyer">
+                <button>Buy</button>
+            </a>
+        {{/if}}
+         {{#unless userPrice}}
+            <a href="/buy/:idOwener/:idBuyer">
+                <button>Trade</button>
+            </a>
+        {{/unless}}
+         
+        {{/unless}}
         <details>
             <summary>Tracklist:</summary>
             <ul>
