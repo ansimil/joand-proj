@@ -22,6 +22,12 @@ router.post("/signup", (req,res,next) => {
 		return
 	}	
 	console.log(req.body)
+	if (coordinates.length === 0) {
+		res.render('signup', { message: 'Please choose your location on the map', auth: req.isAuthenticated() })
+		return	
+	}
+
+
 	User.findOne({ username: username })
 		.then(userFromDB => {
 			if (userFromDB !== null) {
