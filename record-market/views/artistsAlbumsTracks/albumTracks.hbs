@@ -31,16 +31,15 @@
 {{!-- <input type="hidden" id="userCoord" default="{{user}}"> --}}
 <p id="userCoord" style="visibility: hidden">{{user}}</p>
 
-<script src="/js/mapAlbum.js"></script>
 
 {{#each usersArray}} 
-<p>{{this}}</p>
+<p class="usersCoo" >{{this}}</p> 
 {{/each}}
 
 
 
 
-
+<script src="/js/mapAlbum.js"></script>
 
 <div>
 {{#if vids}}

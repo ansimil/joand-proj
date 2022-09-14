@@ -11,10 +11,19 @@ const mapAlbum = new mapboxgl.Map({
 
 mapAlbum.addControl(new mapboxgl.NavigationControl())
 
-const coords = [
-	[13.405, 52.52],
-	[13.6, 52.6]
-]
+const coords = []
+
+const usersArrCoords = document.querySelectorAll('.usersCoo')
+usersArrCoords.forEach(user => {
+	let userCord = user.innerHTML
+	const userCordArray = userCord.match(/\d+/g)
+	const lng =  userCordArray[0] + '.' + userCordArray[1] 
+	const lat =  userCordArray[2] + '.' + userCordArray[3] 
+	const dataCoord = [lng, lat]
+	coords.push(dataCoord)
+})
+
+console.log (coords)
 
 coords.forEach(coord => {
 	new mapboxgl.Marker({
