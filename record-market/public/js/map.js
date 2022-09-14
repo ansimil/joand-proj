@@ -1,5 +1,6 @@
 const token = 'pk.eyJ1Ijoiam9hbm5hemllbGluc2thbSIsImEiOiJjbDgwODBpcDQwM2w0M3ZvNTl1MmZqN3lkIn0.TTZn9MHJffHxmLiUPGWoPA'
 
+
 mapboxgl.accessToken = token
 const map = new mapboxgl.Map({
 	container: 'map', // container ID
@@ -28,3 +29,4 @@ function addMarker(event) {
 
 
 map.on('click', addMarker)
+

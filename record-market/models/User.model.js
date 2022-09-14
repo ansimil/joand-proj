@@ -15,7 +15,7 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Collection'
     }],
-    adress: {
+    coordinates: {
       type: String,
       required: true,
     }

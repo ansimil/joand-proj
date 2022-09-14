@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const albumSchema = new Schema ({
     name: String,
-    aritist:  String,
+    artist:  String,
     imgName: String,
 	imgPath: String,
     release: Number,

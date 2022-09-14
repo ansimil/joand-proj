@@ -7,12 +7,21 @@
 {{#if collection.albums}}
 <ph2>Albums:</h2>
     {{#each collection.albums}}
-        <p>{{name}}</p>
-        <img src="{{imgPath}}" alt="cover {{name}}" height="300px">
-        <p>{{release}}</p>
-        {{#if userPrice}}
-            <p>{{userPrice}}</p>
+        <h4>Artist: {{artist}}</h4>
+        <p>Title: {{name}}</p>
+        <img src="{{imgPath}}" alt="cover {{name}}" height="300px" width="300px">
+        <p>Release Year: {{release}}</p>
+        {{#if price}}
+            <p>Value: ${{price}}</p>
         {{/if}} 
+        <details>
+            <summary>Tracklist:</summary>
+            <ul>
+            {{#each tracks}}
+            <li>{{name}}</li>
+            {{/each}}
+            </ul>
+        </details>
         <a href="/collections/{{../collection._id}}/remove/{{_id}}">Remove album from collection</a>  
     {{/each}}
 {{/if}}
