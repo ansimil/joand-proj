@@ -15,7 +15,7 @@ let count = 0
 function addMarker(event) {   
    if (count === 0) {
     new mapboxgl.Marker({
-		color: 'red',
+		    color: 'red',
         draggable: true
 	}).setLngLat(event.lngLat)        
 		.addTo(map)        
