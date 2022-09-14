@@ -40,10 +40,11 @@ coordsAndIDs.forEach(coordAndID => {
 	new mapboxgl.Marker({
 		color: '#5fbbd0',
 	}).setLngLat(coordAndID.coordinates)
-	.setPopup(new mapboxgl.Popup().setHTML(`<h3>${coordAndID.userId}</h3>`))        
+	.setPopup(new mapboxgl.Popup().setHTML(`<a href="/collections/${coordAndID.userId}">See in user Collection</a>`))        
     .addTo(mapAlbum)  
 })
 
+// let linkToUser = `<a href="/collections/${coordAndID.userId}">Add to collection</a>`
 
 
 const user =  document.querySelector('#userCoord').innerHTML //'LngLat(13.25424296134969, 52.46167289022344)'
@@ -60,10 +61,4 @@ if (user !== '') {
 
 
 
-	
-	
-// const newYork = new mapboxgl.LngLat(-74.0060, 40.7128);
-// const losAngeles = new mapboxgl.LngLat(-118.2437, 34.0522);
-// newYork.distanceTo(losAngeles);
-	
 	
