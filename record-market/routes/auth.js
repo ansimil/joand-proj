@@ -12,8 +12,7 @@ router.get('/signup', (req, res, next) => {
 
 
 router.post("/signup", (req,res,next) => {
-	const { username, password } = req.body
-	
+	const { username, password, coordinates } = req.body
     if (username.length === 0) {
 		res.render('signup', { message: 'Your username cannot be empty', auth: req.isAuthenticated() })
 		return
@@ -22,7 +21,7 @@ router.post("/signup", (req,res,next) => {
 		res.render('signup', { message: 'Your password needs to be min 6 characters', auth: req.isAuthenticated() })
 		return
 	}	
-
+	console.log(req.body)
 	User.findOne({ username: username })
 		.then(userFromDB => {
 			if (userFromDB !== null) {
@@ -31,7 +30,7 @@ router.post("/signup", (req,res,next) => {
 				const salt = bcrypt.genSaltSync()
 				const hash = bcrypt.hashSync(password, salt)
 				// create the user
-				User.create({ username, password: hash })
+				User.create({ username, password: hash, coordinates })
 					.then(createdUser => {
 						console.log(createdUser)
 						res.redirect('/login')

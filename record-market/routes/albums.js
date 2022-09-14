@@ -10,6 +10,7 @@ const User = require('../models/User.model');
 const loginCheck = require('../utils/loginCheck');
 const Collection = require('../models/Collection')
 
+
 var dis = new Discogs({
 	consumerKey: consumerKey, 
 	consumerSecret: secretKey
@@ -48,11 +49,11 @@ router.get('/album/:id', (req,res,next) => {
 
 router.get('/album/:id/add', loginCheck(), (req, res, next) =>{
     const userId = req.user._id
-    console.log(userId)
+    //console.log(userId)
     User.findById(userId)
     .populate('collections')
     .then(user => {
-        console.log(user)
+        //console.log(user)
         res.render('./artistsAlbumsTracks/addAlbumToCollection', {user: user, auth: req.isAuthenticated(), releaseId: req.params.id})
     })
     .catch(err => next(err))
@@ -61,7 +62,7 @@ router.get('/album/:id/add', loginCheck(), (req, res, next) =>{
 router.post('/album/:id/add', loginCheck(), (req, res, next)=>{
 
     db.getMaster(req.params.id, function(err, data){
-        //console.log(data)     
+        console.log(data.artists[0].name)     
         const name = data.title
         const artist = data.artists[0].name
         const imgName = data.images[0].type
