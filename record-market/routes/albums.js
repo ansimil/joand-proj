@@ -23,7 +23,7 @@ router.get('/album/:id', (req,res,next) => {
     let userCoord = req.user.coordinates
     let albumsArr = []
     let collectionArr = []
-    let usersArr = []
+    let usersArr = [] 
 
     Album.find({ 'discogsId': req.params.id })
     .then(albumsDB => {
@@ -77,7 +77,7 @@ router.post('/album/:id/add', loginCheck(), (req, res, next)=>{
             matchCheck.push('match')
             }
         })
-
+//comment
         if (matchCheck.length < 1) {
             db.getMaster(req.params.id, function(err, data){ 
                 const name = data.title
