@@ -21,9 +21,32 @@ var db = dis.database();
 
 router.get('/album/:id', (req,res,next) => {
     let albumArr = []
+    let collectionArr = []
+    let userCoord = req.user.coordinates
+
     db.getMaster(req.params.id, function(err, data){
         if(data.message !== 'Release not found.'){
-        console.log(data)
+    Album.find({ 'discogsId': req.params.id })
+    .then(data => {
+        data.forEach(album => {
+        Collection.find({'albums' : album._id})
+        .then(data2 => {
+            data2.forEach(collection => {
+            User.find({'collections': collection._id})
+            .then(data3 => {
+                    console.log(data3)
+                                })    
+                            })
+                        })
+                    })
+                 }) 
+                }
+            })
+     
+    
+    
+    db.getMaster(req.params.id, function(err, data){
+        if(data.message !== 'Release not found.'){
         if (!data.videos && data.images){
         let img = data.images[0].resource_url
         res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, auth: req.isAuthenticated()})}
@@ -35,11 +58,12 @@ router.get('/album/:id', (req,res,next) => {
             })
             //console.log(vids)
             //let vid = data.videos[0].uri.replace("watch?v=", "embed/") 
-            res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, vids: vids, auth: req.isAuthenticated()}) 
 
-        }
-    }
-    else {
+            res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, vids: vids, auth: req.isAuthenticated(), user: userCoord})
+                }
+            }
+        else {
+
         res.render('albumTracks') 
     }
         //console.log('done')
