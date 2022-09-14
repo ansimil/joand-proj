@@ -8,6 +8,7 @@ const albumSchema = new Schema ({
     release: Number,
     price: Number,
     userPrice: Number,
+    discogsId: Number,
     tracks: [{
         name: String,
         duration: String,
