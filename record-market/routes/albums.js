@@ -29,9 +29,9 @@ router.get('/album/:id', (req,res,next) => {
     .then(albumsDB => {
         albumsDB.forEach(album => {
             usersArr.push(album.userCoords)
-            console.log( album.userCoords)
+            //console.log( album.userCoords)
         }) 
-        console.log(usersArr)      
+        //console.log(usersArr)      
         db.getMaster(req.params.id, function(err, data){
             if(data.message !== 'Release not found.'){
                 if (!data.videos && data.images){
