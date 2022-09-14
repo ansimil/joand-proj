@@ -26,6 +26,7 @@ router.get('/album/:id', (req,res,next) => {
     let usersArr = []
 
 
+
     Album.find({ 'discogsId': req.params.id })
     .then(albumsDB => {
         console.log(albumsDB)            
@@ -98,12 +99,13 @@ router.post('/album/:id/add', loginCheck(), (req, res, next)=>{
                 const userPrice = 0
                 const tracks = []
                 const discogsId = req.params.id 
+                const userId = req.user._id
                 data.tracklist.forEach(track =>{
                     tracks.push({name: track.title, duration: track.duration})
                 })   
                 
         
-                Album.create({ name, artist, imgName, imgPath, release, price, userPrice, tracks, discogsId })
+                Album.create({ name, artist, imgName, imgPath, release, price, userPrice, tracks, discogsId, userId})
                 .then((createdAlbum) => {
                     Collection.findByIdAndUpdate(collectionID, {
                         $push: { albums: [createdAlbum] }
