@@ -4,7 +4,7 @@ const token = 'pk.eyJ1Ijoiam9hbm5hemllbGluc2thbSIsImEiOiJjbDgwODBpcDQwM2w0M3ZvNT
 mapboxgl.accessToken = token
 const map = new mapboxgl.Map({
 	container: 'map', // container ID
-	style:  'mapbox://styles/mapbox/streets-v11', // style URL
+	style:   'mapbox://styles/mapbox/light-v10', // style URL
 	center: [13.404954, 52.520008], // starting position [lng, lat]
 	zoom: 9, // starting zoom
 	// pitch: 100

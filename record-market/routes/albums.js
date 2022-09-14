@@ -21,6 +21,10 @@ var db = dis.database();
 
 router.get('/album/:id', (req,res,next) => {
     let albumArr = []
+    let userCoord = req.user.coordinates
+    db.getMaster(req.params.id, function(err, data){
+        if(data.message !== 'Release not found.'){
+        //console.log(data)
     let collectionArr = []
     Album.find({ 'discogsId': req.params.id })
     .then(data => {
@@ -31,7 +35,7 @@ router.get('/album/:id', (req,res,next) => {
             User.find({'collections': collection._id})
             .then(data3 => {
                     console.log(data3)
-            })    
+                })    
             })
         })
         })
@@ -40,9 +44,10 @@ router.get('/album/:id', (req,res,next) => {
     
     db.getMaster(req.params.id, function(err, data){
         if(data.message !== 'Release not found.'){
+
         if (!data.videos && data.images){
         let img = data.images[0].resource_url
-        res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, auth: req.isAuthenticated()})}
+        res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, auth: req.isAuthenticated(), user: userCoord})}
         else if (data.videos && data.images){
             let img = data.images[0].resource_url
             let vids = []
@@ -51,7 +56,7 @@ router.get('/album/:id', (req,res,next) => {
             })
             //console.log(vids)
             //let vid = data.videos[0].uri.replace("watch?v=", "embed/") 
-            res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, vids: vids, auth: req.isAuthenticated()}) 
+            res.render('./artistsAlbumsTracks/albumTracks', {tracks: data, imgSrc: img, vids: vids, auth: req.isAuthenticated(), user: userCoord}) 
 
         }
     }
@@ -73,7 +78,6 @@ router.get('/album/:id/add', loginCheck(), (req, res, next) =>{
     })
 
 router.post('/album/:id/add', loginCheck(), (req, res, next)=>{
-
     db.getMaster(req.params.id, function(err, data){
         //console.log(req.params.id) 
         const discogsId = req.params.id    
