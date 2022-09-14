@@ -9,7 +9,7 @@ const albumSchema = new Schema ({
     price: Number,
     userPrice: Number,
     discogsId: Number,
-    userId: String,
+    userCoords: String,
     tracks: [{
         name: String,
         duration: String,
