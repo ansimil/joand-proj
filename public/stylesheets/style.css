@@ -1,7 +1,7 @@
 body {
   padding: 0;
   margin: 0;
-  font: 14px 'Oswald', Helvetica, Arial, sans-serif;  
+  font: 14px 'Poppins', Helvetica, Arial, sans-serif;  
   color: white;
   background-color: black;
 }
@@ -168,7 +168,8 @@ ul {
   width: 100%;
   background-color: white;
   color: black;
-  font-size: 30px;
+  font-size: 28px;
+  font-family: 'Oswald', Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: row;
   align-items:center;
@@ -193,7 +194,7 @@ ul {
 
 .navigation{  
   width: 130px;
-  font-size: 20px;
+  font-size: 18px;
   display: flex;
   flex-direction: row;
   align-items:center;
@@ -201,7 +202,7 @@ ul {
   padding-right: 200px; 
 }
 
-.home-page{
+.img-main{
   height: 100vh;
   background-image: url('/images/joanna-nix-walkup-Kp1Oz5fSxiw-unsplash.jpg');
   background-position: center;
@@ -227,6 +228,7 @@ ul {
 
 .buttons{
   padding: 80px 100px;
+  width: 400px;
   display: flex;
   flex-direction: row;
   align-items:center;
@@ -244,8 +246,8 @@ ul {
   
 }
 
-.search{
-  background-color: rgba(255, 255, 255, 0.6);  
+.form-container{
+  background-color: rgba(255, 255, 255, 0.65);  
   padding: 40px 60px 60px 40px;
   color: black;
   flex-direction: row;
@@ -253,19 +255,19 @@ ul {
   justify-content: center;   
 }
 
-.search label{
+.form-container label{
   font-size: 16px;
   font-weight: 700;
 }
-.search input {
+.form-container input {
   border: none;
   border-radius: 0;
   box-sizing: border-box;
   height: 40px;
-  width: 450px;
+  width: 600px;
   padding-left: 30px;
   margin-bottom: 20px; 
-  background-color: rgba(255, 255, 255, 0.6);  
+  background-color: rgba(255, 255, 255, 0.5);  
   box-shadow: 5px 5px 5px rgb(41, 41, 41);
   font-size: 16px;
   margin: 0 20px;     
@@ -274,4 +276,48 @@ ul {
 input:focus {
   outline: none;
   background-color: white;
+}
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center; 
+}
+
+.input-line {
+  width: 100%;
+  margin: 15px 0;
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: space-between;
+}
+
+.login-btn {
+  margin-top: 15px;
+}
+
+.map-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.map-text {
+  width: 300px;
+  margin-right: 50px;
+}
+
+#map {
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  width: 600px;
+  height: 40vh;
+  padding-left: 30px;
+  margin-bottom: 20px; 
+  background-color: rgba(255, 255, 255, 0.5);  
+  box-shadow: 5px 5px 5px rgb(41, 41, 41);
+  font-size: 16px;
+  margin: 0 20px;
 }
