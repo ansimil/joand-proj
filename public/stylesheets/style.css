@@ -473,7 +473,7 @@ opacity: .9;
 .container-white{
   height: 100vh;
   width: 600px;
-  background-color: rgba(255, 255, 255, 0.171);
+  background-color: rgba(255, 255, 255, 0.356);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -482,4 +482,33 @@ opacity: .9;
   align-items:center;
   justify-content:center;
 
+}
+
+.form-container h2{
+  color: white;
+  filter: drop-shadow(2px 2px 2px rgb(78, 78, 78));
+
+}
+
+.selection {
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  height: 40px;
+  width: 600px;
+  padding-left: 30px;
+  margin-bottom: 20px; 
+  background-color: rgba(255, 255, 255, 0.7);  
+  box-shadow: 5px 5px 5px rgb(41, 41, 41);
+  font-size: 16px;
+  margin: 0 20px 50px  20px ; 
+}
+
+.selection:focus{
+  outline: none;
+  font-weight: 400;  
+}
+
+.btn-profile {
+  padding: 8px;
 }

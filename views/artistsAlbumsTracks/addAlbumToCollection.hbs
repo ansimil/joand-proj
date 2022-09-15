@@ -1,14 +1,17 @@
-
-<label for="collections">Select Collection:</label>
-
-<form action="/album/{{releaseId}}/add" method="POST">
-
-<select name="collection" id="collection">
-{{#each user.collections}}
- <option value="{{_id}}">{{name}}</option>
-{{/each}} 
-</select>
-
-<button type="submit">Add album to selected collection</button>
-
-</form>
+<div class="img-main">
+    <div class="dark"> 
+        <div class="form-container">        
+            <form action="/album/{{releaseId}}/add" method="POST">
+                <h2>Select Collection:</h2>
+            {{!-- <label for="collections"></label> --}}
+                <select class='selection'  name="collection" id="collection">
+                {{#each user.collections}}
+                <option value="{{_id}}">{{name}}</option>
+                {{/each}} 
+                </select>
+                <button class='button' type="submit">Add Album</button>
+            </form>
+        </div>    
+    </div>
+</div>
+    
