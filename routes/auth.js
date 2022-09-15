@@ -2,7 +2,9 @@ const router = require("express").Router();
 const User = require('../models/User.model')
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
-const loginCheck = require('../utils/loginCheck')
+const loginCheck = require('../utils/loginCheck');
+const Collection = require('../models/Collection')
+
 
 
 
@@ -38,13 +40,31 @@ router.post("/signup", (req,res,next) => {
 				// create the user
 				User.create({ username, password: hash, coordinates })
 					.then(createdUser => {
-						console.log(createdUser)
-						res.redirect('/login')
+						const name = 'Colection 0'
+						const description = 'Please add collection description'
+						Collection.create({name, description })
+						.then((createdCollection) => {
+							User.findByIdAndUpdate(createdUser._id, { $push: {collections: createdCollection }})
+							.then(()=> {
+								console.log(createdUser)
+								res.redirect('/login')
+							})
+						})
+						
 					})
 					.catch(err => next(err))
 			}
 		})
 });
+
+// const name = 'Colection 0'
+// const description = 'Please add collection description'
+// Collection.create({ name, description})
+//  .then((createdCollection) => {
+//  User.findByIdAndUpdate(createdUser._id, {
+// 	$push: {collections: createdCollection }
+						
+// })
 
 
 router.get("/login", (req,res,next) => {        

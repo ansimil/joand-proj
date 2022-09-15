@@ -12,3 +12,10 @@
 </form>
 </div>
 
+<div>
+    {{#unless auth}}
+         <a href="/login">Login</a>
+         <a href="/signup">Sign Up</a>
+    {{/unless}}
+</div>
+
