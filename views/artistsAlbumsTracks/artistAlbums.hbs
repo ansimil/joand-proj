@@ -1,34 +1,50 @@
+<div>
+
+<div class="artistAndBio">
+<div class="artistName">
 <h1>{{artist.name}}</h1>
 
 <img src="{{img}}" alt="" height="200" width="200">
+</div>
 
+<div class="bio">
 <h2>Artist Info:</h2>
-<h3>Bio</h3>
+<details>
+    <summary>Bio</summary>
 <p>{{artist.profile}}</p>
+</details>
 
-<h3>Members</h3>
+<details>
+    <summary>Members</summary>
+
 <ul>
-{{#each artist.members}} 
-   
+{{#each artist.members}}  
 <li>{{this.name}}</li>
-
 {{/each}}
 </ul>
 
-<h3>Links</h3>
+</details>
+
+<details>
+    <summary>Links</summary>
 <ul>
 {{#each links}}    
 <li>{{this}}</li>
 {{/each}}
 </ul>
+</details>
+</div>
 
-<div>
+</div>
+
 <h2>Releases:</h2>
+<div class="albumContainer">
+
 {{#each albums}}
 
-<div>
+<div class="albumSubcontainer">
     
-<a href="/album/{{id}}"><h3>{{title}}</h3></a>
+<a href="/album/{{id}}"><h5>{{title}}</h5></a>
 
 <a href="/album/{{id}}"><img src="{{thumb}}" alt="Pic of album" height="100" width="100"></a> 
 
@@ -43,4 +59,5 @@
 </div>
 
 {{/each}}
+</div>
 </div>
