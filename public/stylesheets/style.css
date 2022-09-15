@@ -26,13 +26,17 @@ a {
   justify-content: center;
   align-items: center;
   align-content: center;
+  height: 100vh;
 }
 
+
+
 #artistResults h2 {
-   display: flex;
-   position: relative;
-   left: 100px
+  padding: 30px 0px 0px 0px;
+  text-align: center;
 }
+
+
 
 .container { 
   display: grid;
@@ -40,7 +44,6 @@ a {
   grid-template-columns: repeat(4, 300px);
   grid-auto-rows: minmax(300px, auto);
   grid-gap: 40px;
-
 }
 
 .subcontainer {
@@ -65,13 +68,23 @@ a {
   background-color: white;
 }
 
+.subcontainer:hover {
+  background-color: rgb(12, 12, 12);
+}
+
+.releasesText {
+  text-align: center;
+}
+
 .artistAndBio {
+  padding: 50px 0px 0px 0px;
   display: flex;
   width: 100vw;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
+  border-bottom: rgb(83, 83, 83) solid 1px;
 }
 
 .artistName {
@@ -79,31 +92,34 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0px 0px 20px 0px
 }
 
 .bio {
-  width: 40vw
+  width: 40vw;
+  padding: 0px 0px 30px 0px
 }
 
-.albumContainer { 
+.albumContainer {   
   display: grid;
   justify-content: center;
   align-items: flex-end;
-  grid-template-columns: repeat(6, 200px);
-  grid-auto-rows: minmax(300px, auto);
+  grid-template-columns: repeat(8, 125px);
+  grid-auto-rows: minmax(150px, auto);
   grid-gap: 40px;
-
 }
+
+
+
 
 details summary::-webkit-details-marker { display:none; }
 
 details {
-  width: 50%;
+  width: 70%;
   margin: 0 auto ;
   background: #fefefe;
   margin-bottom: .5rem;
   box-shadow: 0 .1rem 1rem -.5rem rgba(0,0,0,.4);
-  border-radius: 5px;
   overflow:auto;
   color: black;
   text-align: center;
@@ -112,14 +128,18 @@ details {
 summary {
   padding: 0.25rem;
   display: block;
-  background: rgb(255, 255, 255);
+  background: black;
   cursor: pointer;
-  color: black;
+  color: white;
+}
+summary:hover {
+  background-color: rgb(12, 12, 12);
 }
 
 ul {
   list-style: none;
   text-decoration: none;
+  padding-left: 0;
 }
 
 .albumSubcontainer {
@@ -128,9 +148,15 @@ ul {
   flex-direction: column;
   align-items: center;
   border-radius: 5px;
+  
   /*background-color: white;*/
   
 }
+.albumSubcontainer:hover {
+  background-color: rgb(12, 12, 12);
+}
+
+
 
 .albumSubcontainer img {
   border-radius: 5px;
@@ -179,16 +205,13 @@ ul {
 .img-main{
   height: 100vh;
   background-image: url('/images/joanna-nix-walkup-Kp1Oz5fSxiw-unsplash.jpg');
- 
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;
   align-items:center;
-  justify-content:center;
-  
-
+  justify-content:center; 
 }
 
 .button {
