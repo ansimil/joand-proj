@@ -59,8 +59,8 @@ router.get('/remove/:idCollection', loginCheck(), (req, res, next) => {
                         })
                     })                                   
                     
-                console.log(req.user.collections)
-                console.log(req.user)
+                //console.log(req.user.collections)
+                //console.log(req.user)
                 
             })
             .catch(err => next(err))
@@ -75,15 +75,15 @@ router.get('/collection/:idCollection', (req, res, next) => {
                 console.log(collectionByID)
                 User.find({ 'collections': collectionByID._id})
                 .then (users => {
-                    console.log(typeof users[0]._id.valueOf())
-                    console.log(typeof req.user._id.valueOf())
+                    //console.log(typeof users[0]._id.valueOf())
+                    //console.log(typeof req.user._id.valueOf())
                     if (users[0]._id.valueOf() === req.user._id.valueOf()){
                     let buyBtn = true
-                    console.log('matching user')
+                    //console.log('matching user')
                     res.render('collections/collection', { collection: collectionByID, auth: req.isAuthenticated(), buyBtn: buyBtn })
                     }
                     else {
-                    console.log('not matching')
+                    //console.log('not matching')
                     res.render('collections/collection', { collection: collectionByID, auth: req.isAuthenticated()})    
                     }
                 })
@@ -128,6 +128,7 @@ router.post('/edit/:idCollection', loginCheck(), (req, res, next) => {
         res.redirect(`/collections/collection/${req.params.idCollection}`)
     })
 })
+
 
 
 

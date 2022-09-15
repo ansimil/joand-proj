@@ -180,6 +180,94 @@ router.post('/album/:id/add', loginCheck(), (req, res, next)=>{
     
 });
 
+router.get('/buy/:idCollection/:idAlbum', (req, res, next) => {
+    
+    console.log(req.params.idAlbum)
+    console.log(req.params.idCollection)
+    
+    console.log(req.params.idAlbum)
+    Album.findById(req.params.idAlbum)
+    .then (album => {
+        albumPurchaseId = album.discogsId
+        console.log(albumPurchaseId)
+    
+        Album.findByIdAndDelete(req.params.idAlbum)
+        .then(() =>{
+            res.redirect(`/addpurchase/${albumPurchaseId}`)
+        })
+
+    })
+
+    
+})
+
+router.get('/addpurchase/:discogsId', (req, res, next) => {
+    const userId = req.user._id
+    User.findById(userId)
+    .populate('collections')
+    .then(user => {
+        res.render('./artistsAlbumsTracks/buyAlbum', {user: user, auth: req.isAuthenticated(), releaseId: req.params.discogsId})
+    })
+    .catch(err => next(err))
+})
 
 
-module.exports = router;
+router.post('/addpurchase/:id', loginCheck(), (req, res, next)=>{
+    var collectionID = req.body.collection
+    var matchCheck = []
+
+    Collection.findById(req.body.collection)
+    .populate('albums')
+    .then(collection => {
+        collection.albums.forEach(album => {
+
+            if (album.discogsId == req.params.id){
+            matchCheck.push('match')
+            }
+        })
+        console.log(matchCheck)
+        if (matchCheck.length < 1) {
+            db.getMaster(req.params.id, function(err, data){ 
+                const name = data.title
+                const artist = data.artists[0].name
+                const imgName = data.images[0].type
+                const imgPath = data.images[0].uri 
+                const release = data.year
+                const price = data.lowest_price
+                const userPrice = 0
+                const tracks = []
+                const discogsId = req.params.id 
+                const userCoords = req.user.coordinates
+                data.tracklist.forEach(track =>{
+                    tracks.push({name: track.title, duration: track.duration})
+                })   
+                
+        
+                Album.create({ name, artist, imgName, imgPath, release, price, userPrice, tracks, discogsId, userCoords})
+                .then((createdAlbum) => {
+                    Collection.findByIdAndUpdate(collectionID, {
+                        $push: { albums: [createdAlbum] }
+                    })
+                    .then(() => {
+                        res.redirect(`/collections/collection/${collectionID}`)  
+                    })
+                })
+            }) 
+        }
+        else {
+            console.log('else')
+            let userId = req.user._id
+            User.findById(userId)
+                .populate('collections')
+                .then(user => {
+                    let message = 'You already own this album'
+                    res.render('./artistsAlbumsTracks/buyAlbum', {user: user, auth: req.isAuthenticated(), releaseId: req.params.id, message: message})
+                })
+                
+        }
+    }) 
+    
+});
+
+
+module.exports = router
