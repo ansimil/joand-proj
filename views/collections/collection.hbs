@@ -18,6 +18,10 @@
             <p>Value: ${{price}}</p>
         {{/if}}
 
+        {{#unless ../buyBtn}}
+        <a href="/test">Buy album</a>
+        {{/unless}}
+
         {{!-- TODO --}}
 
         {{#if userPrice}}

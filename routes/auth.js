@@ -61,8 +61,9 @@ router.post('/login', passport.authenticate('local', {
 router.get("/profile", loginCheck(), (req,res,next) => {
     const loggedUser = req.user    
     res.render('profile', {user : loggedUser, auth: req.isAuthenticated()})
-	console.log(req.isAuthenticated())
+	//console.log(req.isAuthenticated())
     console.log(loggedUser)
+	
 })
 
 router.get('/logout', (req, res, next) => {

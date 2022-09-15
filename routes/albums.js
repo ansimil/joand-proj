@@ -19,10 +19,18 @@ var dis = new Discogs({
 var db = dis.database();
 
 router.get('/album/:id', (req,res,next) => {
-    const id = req.params.id;
-    let userCoord = req.user.coordinates
+    const id = req.params.id
     let usersWithAlbum = []
+
+    let userCoord = ''
+
+    
+    if (req.isAuthenticated()){
+        userCoord = req.user.coordinates 
+    }
+
     let collectionWithAlbum = []
+
 
 
     User.find()

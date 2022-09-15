@@ -72,8 +72,23 @@ router.get('/collection/:idCollection', (req, res, next) => {
     Collection.findById(req.params.idCollection)
             .populate('albums')
             .then(collectionByID => {
+                console.log(collectionByID)
+                User.find({ 'collections': collectionByID._id})
+                .then (users => {
+                    console.log(typeof users[0]._id.valueOf())
+                    console.log(typeof req.user._id.valueOf())
+                    if (users[0]._id.valueOf() === req.user._id.valueOf()){
+                    let buyBtn = true
+                    console.log('matching user')
+                    res.render('collections/collection', { collection: collectionByID, auth: req.isAuthenticated(), buyBtn: buyBtn })
+                    }
+                    else {
+                    console.log('not matching')
+                    res.render('collections/collection', { collection: collectionByID, auth: req.isAuthenticated()})    
+                    }
+                })
                 //console.log(collectionByID)
-                res.render('collections/collection', { collection: collectionByID, auth: req.isAuthenticated() })
+                
             })
             .catch(err => next(err))
 })
