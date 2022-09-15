@@ -1,13 +1,22 @@
 <h1>Artists</h1>
 
-<div>
+<div id="artistResults" class="container">
 {{#each data}}
+<div class="subcontainer">
+
 <div>
 <a href="/artist/{{id}}"><h3>{{title}}</h3></a>
+</div>
 
+<div>
 <a href="/artist/{{id}}"><img src="{{cover_image}}" alt="Pic of band" height="200" width="200"></a>
+</div>
 
-<a href="/artist/{{id}}">Show Albums</a>
+<div>
+<a class="showAlbums" href="/artist/{{id}}">SHOW ALBUMS</a>
+</div>
+
+
 </div>
 {{/each}}
 </div>

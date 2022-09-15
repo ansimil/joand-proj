@@ -20,6 +20,40 @@ h1 {
   color: red
 }
 
+
+/* Styling for Artist results page */
+#artistResults { 
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, 300px);
+  grid-auto-rows: minmax(300px, auto);
+  grid-gap: 40px;
+
+}
+
+#artistResults .subcontainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  border: rgb(149, 144, 144) solid 1px;
+  border-radius: 5px;
+  background-color: #e7f2f7;
+  
+}
+
+#artistResults .subcontainer img {
+  border-radius: 10px;
+  border: black solid 1px;
+}
+
+#artistResults .subcontainer .showAlbums {
+  padding: 10px;
+  border: black solid 1px;
+  border-radius: 5px;
+  background-color: white;
+}
+
 .nav-bar{
   height: 100px;
   width: 100%;
@@ -52,5 +86,6 @@ h1 {
   align-items:center;
   justify-content:space-between;
   padding-right: 200px;
+
 }
 
