@@ -1,11 +1,23 @@
-<h2>Login</h2>
-<form action="/login/{{_id}}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username">
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password">
-    <button type="submit">Log in</button>    
-</form>
-{{#if message}}    
-    <p>{{message}}</p>
-{{/if}}
+<div class="img-main">
+    <div class="form-container">
+        
+        <form action="/login/{{_id}}" method="post">
+            <h2>Login</h2>
+            <div class="input-line">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username">
+            </div>
+            <div class="input-line">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password">
+            </div>
+            
+            <button  class='button login-btn' type="submit">Log in</button>    
+        </form>
+        {{#if message}}    
+            <p>{{message}}</p>
+        {{/if}}
+    </div>    
+
+</div>
+    

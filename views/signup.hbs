@@ -1,23 +1,36 @@
-<h2>Sign up</h2>
-<form action="/signup" method="post">
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username">
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password">
-    <input type="coordinates" name="coordinates" id="coordinates" value="" style ="visibility: hidden;">
-   
-    <button type="submit">Sign up</button>
-</form> 
-{{#if message}}
-	<p class="message">{{message}}</p>
-{{/if}}
+<div class="img-main ">
+          
+        <form  class="form-container" action="/signup" method="post">
+            <h2>Sign up</h2>
+            <div class="input-line">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username">
+            </div>
+            <div class="input-line">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password">
+                
+            </div>
+            {{#if message}}
+                <p class="message">{{message}}</p>
+            {{/if}}                                  
+            
+            <div class="map-block">                                 
+                <div class="map-text"> 
+                    <h2>Please mark your location:</h2>                   
+                    <p> Click on the map to drop a marker. Marker can be dragged to accurately show your location
+                    </p>
+                    <button class='button login-btn' type="submit">Sign up</button>
+                </div>                
+                <div id='map'></div>
+                <script src="/js/map.js"></script>
+            </div>
+            <input type="coordinates" name="coordinates" id="coordinates" value="" style ="hieght: 0; visibility: hidden;">
+                
+        </form> 
+    
+    
+</div>  
 
-
- <h2>Please choose your location:</h2>
- <h4>Click on the map to drop a marker. Marker can be dragged to accurately show your location</h4>
-
-<div id='map' style='width: 80vw; height: 80vh;'></div>
-
-<script src="/js/map.js"></script>
 
     
