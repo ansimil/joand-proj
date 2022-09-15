@@ -1,21 +1,27 @@
+<div class="backgroundImg">
+<div class="greyBackground">
+
 <div class="topContainer">
-<div>
+<div class="albumInfoContainer">
 {{#each tracks.artists}}
 <h1>{{name}}</h1>
 {{/each}}
 
 <h3>{{tracks.title}}</h3>
-{{#if auth}}
-<a href="/album/{{tracks.id}}/add">Add to collection</a>
-{{/if}}
+
 
 <div>
 <img src="{{imgSrc}}" height="200" width="200">
 </div>
 
+{{#if auth}}
+<a class='addBtn' href="/album/{{tracks.id}}/add">+</a>
+{{/if}}
+
 <div>
 <p>Release Year: {{tracks.year}}</p>
 </div>
+
 <div>
 <p>Sale Value: ${{tracks.lowest_price}}</p>
 </div>
@@ -28,6 +34,7 @@
 {{/each}}
 </ol>
 </div>
+
 </div>
 
 <div>
@@ -64,4 +71,5 @@
 {{/if}}
 </div>
 
-
+</div>
+</div>

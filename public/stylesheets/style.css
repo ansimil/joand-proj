@@ -69,11 +69,15 @@ a {
 }
 
 .subcontainer:hover {
-  background-color: rgb(12, 12, 12);
+  background-color: rgba(116, 112, 112, 0.504);
 }
 
 .releasesText {
   text-align: center;
+}
+
+.greyBackground {
+  background-color:rgba(0, 0, 0, 0.658);
 }
 
 .artistAndBio {
@@ -85,8 +89,7 @@ a {
   flex-direction: column;
   flex-wrap: wrap;
   border-bottom: rgb(83, 83, 83) solid 1px;
-  background-color: rgba(0, 0, 0, 0.658);
-  color: black
+  color: white
 }
 
 .artistAndBio img {
@@ -95,12 +98,13 @@ a {
 }
 
 .backgroundImg{
- 
   background-image: url('/images/joanna-nix-walkup-Kp1Oz5fSxiw-unsplash.jpg');
   background-position: center;
   background-attachment: fixed;
-  background-size:contain; 
+  background-size:contain;  
 }
+
+
 
 /*.artistName {
   display: flex;
@@ -119,9 +123,10 @@ a {
   display: grid;
   justify-content: center;
   align-items: flex-end;
-  grid-template-columns: repeat(8, 125px);
+  grid-template-columns: repeat(7, 150px);
   grid-auto-rows: minmax(150px, auto);
   grid-gap: 40px;
+  border: 1px solid #000;
   
 }
 
@@ -133,7 +138,7 @@ details summary::-webkit-details-marker { display:none; }
 details {
   width: 70%;
   margin: 0 auto ;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.5);
   margin-bottom: .5rem;
   box-shadow: 0 .1rem 1rem -.5rem rgba(0,0,0,.4);
   overflow:auto;
@@ -167,13 +172,10 @@ ul {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  border-radius: 5px;
-  
-  /*background-color: white;*/
-  
+  border-radius: 5px; 
 }
 .albumSubcontainer:hover {
-  background-color: rgb(12, 12, 12);
+  background-color: rgba(116, 112, 112, 0.504);
 }
 
 
@@ -188,6 +190,28 @@ ul {
   justify-content:space-around;
   align-items: center;
   border-bottom: rgb(83, 83, 83) solid 1px;
+}
+
+.albumInfoContainer {
+  background-color: (0, 0, 0, 0.8);
+}
+
+.addBtn {
+  font-size: 30px;
+  border: black solid .5px;
+  padding: 0px 10px 0px 10px;
+  border-radius: 5px;
+  background-color: rgb(55, 107, 185); 
+  color: white
+}
+
+.addBtn:hover {
+  color: rgb(213, 159, 159);
+  background-color: rgb(72, 118, 187);
+}
+
+.mapAlbum {
+  align-items: center;
 }
 
 .topContainer img {
