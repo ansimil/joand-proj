@@ -22,6 +22,7 @@ router.get('/album/:id', (req,res,next) => {
     const id = req.params.id;
     let userCoord = req.user.coordinates
     let usersWithAlbum = []
+    let collectionWithAlbum = []
 
 
     User.find()
@@ -41,7 +42,14 @@ router.get('/album/:id', (req,res,next) => {
                 collection.albums.forEach(album => {
                    //console.log(album.discogsId)
                     if (album.discogsId == id) {
-                        usersWithAlbum.push(user)
+                        console.log('user ',collection)
+                    
+                        
+                        const userWithAlbumObj = {}
+                        userWithAlbumObj.userWithAlbum = user
+                        userWithAlbumObj.collection = collection._id
+                        
+                        usersWithAlbum.push(userWithAlbumObj)
                     }
                 })
             })
@@ -62,6 +70,7 @@ router.get('/album/:id', (req,res,next) => {
                 }
             }
         })
+        //console.log('collections with album', collectionWithAlbum)
         console.log("users with album: ", usersWithAlbum)
     })
 })
