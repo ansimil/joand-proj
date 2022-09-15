@@ -1,46 +1,54 @@
-<h1>Collection {{collection.name}}</h1>
-<p>{{collection.description}}</p>
-{{#if buyBtn}}
-<a href="/collections/edit/{{collection._id}}">Edit</a>
-{{/if}}
+<div class="img-main">
+    <div class="dark"> 
+        <h1>Collection {{collection.name}}</h1>
+        <p>{{collection.description}}</p>
+        {{#if buyBtn}}
+        <a href="/collections/edit/{{collection._id}}">Edit</a>
+        {{/if}}
 
-{{#if collection.albums}}
-<ph2>Albums:</h2>
-    {{#each collection.albums}}
-        <h4>Artist: {{artist}}</h4>
-        <p>Title: {{name}}</p>
-        <a href="/album/{{discogsId}}">
-            <img src="{{imgPath}}" alt="cover {{name}}" height="300px" width="300px">
-        </a>
-        <p>Release Year: {{release}}</p>
+        {{#if collection.albums}}
         
-        {{#if price}}
-            <p>Value: ${{price}}</p>
-        {{/if}}
+        <div class="albums-collection-container">
+            {{#each collection.albums}}
+            <div class="album-container">
+                <h4>Artist: {{artist}}</h4>
+                <p>Title: {{name}}</p>
+                <a href="/album/{{discogsId}}">
+                    <img src="{{imgPath}}" alt="cover {{name}}" height="300px" width="300px">
+                </a>
+                <p>Release Year: {{release}}</p>
+                
+                {{#if price}}
+                    <p>Value: ${{price}}</p>
+                {{/if}}
+            
+                {{#unless ../buyBtn}}
+                <a href="/buy/{{../collection._id}}/{{_id}}/">Buy album</a>
+                {{/unless}}
 
-        {{#unless ../buyBtn}}
-        <a href="/buy/{{../collection._id}}/{{_id}}/">Buy album</a>
-        {{/unless}}
-
-        {{!-- TODO --}}
-
-
-        <details>
-            <summary>Tracklist:</summary>
-            <ul>
-            {{#each tracks}}
-            <li>{{name}}</li>
+              
+                <details>
+                    <summary>Tracklist:</summary>
+                    <ul>
+                    {{#each tracks}}
+                    <li>{{name}}</li>
+                    {{/each}}
+                    </ul>
+                </details>
+                
+                {{#if ../buyBtn}}
+                <a href="/collections/{{../collection._id}}/remove/{{_id}}">Remove album</a>  
+                {{/if}}
+                </div>
             {{/each}}
-            </ul>
-        </details>
-        {{#if ../buyBtn}}
-        <a href="/collections/{{../collection._id}}/remove/{{_id}}">Remove album</a>  
+            </div>
         {{/if}}
-    {{/each}}
-{{/if}}
 
 
-{{#if buyBtn}}
-<a href="/">Add Album</a>
-{{/if}}
+        {{#if buyBtn}}
+        <a href="/">Add Album</a>
+        {{/if}}
+
+    </div>
+</div>
 

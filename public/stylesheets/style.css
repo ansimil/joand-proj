@@ -261,8 +261,13 @@ ul {
 .img-main{
   height: 100vh;
   background-image: url('/images/joanna-nix-walkup-Kp1Oz5fSxiw-unsplash.jpg');
+  
+
   background-position: center;
-  background-repeat: no-repeat;
+  background-attachment: fixed; 
+ 
+
+  background-repeat: no-repeat; 
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -303,7 +308,7 @@ ul {
 }
 
 .form-container{
-  background-color: rgba(255, 255, 255, 0.65);  
+  background-color: rgba(255, 255, 255, 0.356);;  
   padding: 40px 60px 60px 40px;
   color: black;
   flex-direction: row;
@@ -383,7 +388,7 @@ input:focus {
 }
 
 .dark {
-  height: 100vh;
+  height: 100vh; 
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.658);
   background-position: center;
@@ -471,7 +476,7 @@ opacity: .9;
 }
 
 .container-white{
-  height: 100vh;
+  height: 100%;
   width: 600px;
   background-color: rgba(255, 255, 255, 0.356);
   background-position: center;
@@ -511,4 +516,64 @@ opacity: .9;
 
 .btn-profile {
   padding: 8px;
+}
+
+
+
+.albums-collection-container{
+  display: flex;
+  flex-wrap: wrap;
+  
+  /* position: absolute; */
+  
+  /* top: 60px;
+  left: calc(50% - 300px); */
+
+  /* position: absolute; */
+  height: 100%;
+  width: 80vw;
+  bottom: 20px;
+  /* left: calc(50% - 800px); */
+ 
+}
+
+.album-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgba(12, 12, 12, 0.37);
+  padding: 40px 20px;
+  margin: 15px;
+  box-shadow: -1rem 0 3rem #000;
+/*   margin-left: -50px; */
+  transition: 0.4s ease-out;
+  /* position: relative; */
+  left: 0px;
+
+}
+
+
+
+
+.album-container img {
+  border-radius: 5px;
+  border: none
+}
+
+.album-container:not(:first-child) {
+  margin-left: -100px;
+}
+
+.album-container:hover {
+  background-color: rgba(184, 184, 184, 0.705);
+  transform: translateY(-80px);
+  transition: 0.4s ease-out;
+}
+
+.album-container:hover ~ .album-container {
+  position: relative;
+   left: 180px; 
+  transition: 0.4s ease-out;
 }
