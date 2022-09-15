@@ -1,6 +1,6 @@
 <h1>Collection {{collection.name}}</h1>
 <p>{{collection.description}}</p>
-{{#if ../buyBtn}}
+{{#if buyBtn}}
 <a href="/collections/edit/{{collection._id}}">Edit</a>
 {{/if}}
 
@@ -34,13 +34,13 @@
             </ul>
         </details>
         {{#if ../buyBtn}}
-        <a href="/collections/{{../collection._id}}/remove/{{_id}}">Remove album from collection</a>  
+        <a href="/collections/{{../collection._id}}/remove/{{_id}}">Remove album</a>  
         {{/if}}
     {{/each}}
 {{/if}}
 
 
-{{#if ../buyBtn}}
+{{#if buyBtn}}
 <a href="/">Add Album</a>
 {{/if}}
 
