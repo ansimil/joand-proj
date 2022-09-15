@@ -1,10 +1,15 @@
-<div class="img-main">
-    <div class="dark"> 
-        <h1>Collection {{collection.name}}</h1>
-        <p>{{collection.description}}</p>
+<div class="backgroundImg">
+    <div class="collecton-container">
+        <h1>{{collection.name}}</h1>
+        <p class="description">{{collection.description}}</p>
         {{#if buyBtn}}
-        <a href="/collections/edit/{{collection._id}}">Edit</a>
+        <div   class="collection-btns">
+            <a class='button btn-link' href="/collections/edit/{{collection._id}}">Edit</a>
+            <a class='button btn-link' href="/">Add Album</a>
+        </div>
         {{/if}}
+        
+        
 
         {{#if collection.albums}}
         
@@ -17,14 +22,14 @@
                     <img src="{{imgPath}}" alt="cover {{name}}" height="300px" width="300px">
                 </a>
                 <p>Release Year: {{release}}</p>
-                
+                {{#unless ../buyBtn}}
+                <a class='buy-btn' href="/buy/{{../collection._id}}/{{_id}}/">Buy</a>
+                {{/unless}}
                 {{#if price}}
                     <p>Value: ${{price}}</p>
                 {{/if}}
             
-                {{#unless ../buyBtn}}
-                <a href="/buy/{{../collection._id}}/{{_id}}/">Buy album</a>
-                {{/unless}}
+                
 
               
                 <details>
@@ -37,16 +42,11 @@
                 </details>
                 
                 {{#if ../buyBtn}}
-                <a href="/collections/{{../collection._id}}/remove/{{_id}}">Remove album</a>  
+                <a class='remove-btn' href="/collections/{{../collection._id}}/remove/{{_id}}">Remove</a>  
                 {{/if}}
                 </div>
             {{/each}}
             </div>
-        {{/if}}
-
-
-        {{#if buyBtn}}
-        <a href="/">Add Album</a>
         {{/if}}
 
     </div>

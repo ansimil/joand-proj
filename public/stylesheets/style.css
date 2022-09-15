@@ -332,7 +332,7 @@ ul {
 }
 
 .form-container{
-  background-color: rgba(255, 255, 255, 0.356);;  
+  background-color: rgba(255, 255, 255, 0.473);;  
   padding: 40px 60px 60px 40px;
   color: black;
   flex-direction: row;
@@ -538,7 +538,7 @@ opacity: .9;
   font-weight: 400;  
 }
 
-.btn-profile {
+.btn-link {
   padding: 8px;
 }
 
@@ -601,3 +601,67 @@ opacity: .9;
    left: 180px; 
   transition: 0.4s ease-out;
 }
+
+.collecton-container {
+  background-color: rgba(0, 0, 0, 0.658);
+   display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+}
+
+.collecton-container h1 {
+  margin: 60px 0 20px 0 ;
+  border-bottom: rgb(83, 83, 83) solid 2px;
+}
+.collecton-container .description{
+    width: 60vw;
+    margin-bottom: 20px
+}
+
+.collection-btns{
+  padding: 20px 0;
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom: 20px;
+}
+
+.remove-btn {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.418) ;
+    height: 30px;
+    width: 80px;
+    border: none;
+    border-radius: 3px;
+    box-sizing: border-box;  
+    text-align: center;      
+  }
+    
+  .remove-btn:hover {
+  transform: scale(1.05);
+  background-color: #924747 ;
+  filter: drop-shadow(2px 2px 2px #333);
+  }
+  
+
+  .buy-btn {
+    color: white;
+    background-color: rgba(158, 157, 157, 0.692) ;
+    height: 30px;
+    width: 80px;
+    border: none;
+    border-radius: 3px;
+    box-sizing: border-box;  
+    text-align: center;  
+    padding-top: 5px;    
+  }
+    
+  .buy-btn:hover {
+  transform: scale(1.05);
+  background-color: #6f9247 ;
+  filter: drop-shadow(2px 2px 2px #333);
+  }
+  
