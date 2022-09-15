@@ -1,3 +1,5 @@
+<div class="topContainer">
+<div>
 {{#each tracks.artists}}
 <h1>{{name}}</h1>
 {{/each}}
@@ -26,8 +28,11 @@
 {{/each}}
 </ol>
 </div>
+</div>
 
-<div id='mapAlbum' style='width: 80vw; height: 80vh;'></div>
+<div>
+<h3 style="text-align:center;">Find people close to you who own this album</h3>    
+<div id='mapAlbum' style='width: 40vw; height: 40vh;'></div>
 {{!-- <input type="hidden" id="userCoord" default="{{user}}"> --}}
 <p id="userCoord" style="visibility: hidden">{{user}}</p>
 
@@ -41,18 +46,20 @@
 
 
 <script src="/js/mapAlbum.js"></script>
+</div>
+</div>
 
-<div>
+
+<div class="vidContainer">
 {{#if vids}}
 <h3>Videos:</h3>
-
-
 {{#each vids}}
-<div>
 
+<div class="vidSubContainer">
 <iframe width="560" height="315" src="{{this}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
+
 {{/each}}
 {{/if}}
 </div>
