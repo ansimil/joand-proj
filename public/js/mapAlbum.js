@@ -22,6 +22,7 @@ usersArrCoords.forEach(user => {
 	let userCord = userInfo.split('+')[0]
 	let userID = userInfo.split('+')[1]
 	let username = userInfo.split('+')[2]
+	let collectionId = userInfo.split('+')[3]
 	console.log(userID)
 	const userCordArray = userCord.match(/\d+/g)
 	const lng =  userCordArray[0] + '.' + userCordArray[1] 
@@ -30,6 +31,7 @@ usersArrCoords.forEach(user => {
 	userObj.userId = userID
 	userObj.coordinates = dataCoord
 	userObj.username = username
+	userObj.collectionId = collectionId
 	coordsAndIDs.push(userObj)
 })
 
@@ -42,7 +44,7 @@ coordsAndIDs.forEach(coordAndID => {
 	new mapboxgl.Marker({
 		color: '#5fbbd0',
 	}).setLngLat(coordAndID.coordinates)
-	.setPopup(new mapboxgl.Popup().setHTML(`<a href="/collections/${coordAndID.userId}">See in ${coordAndID.username} Collection</a>`))        
+	.setPopup(new mapboxgl.Popup().setHTML(`<a href="/collections/collection/${coordAndID.collectionId}">See in ${coordAndID.username} Collection</a>`))        
     .addTo(mapAlbum)  
 })
 
