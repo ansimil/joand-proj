@@ -1,20 +1,24 @@
+<div class="img-main">
+    <div class="dark"> 
+        <div class="form-container">   
+            {{!-- <label for="collections">Select Collection:</label> --}}
 
-<label for="collections">Select Collection:</label>
+            <form action="/addpurchase/{{releaseId}}" method="POST">
+            <h2>Select Collection:</h2>
+            <select   class='selection'  name="collection" id="collection">
+            {{#each user.collections}}
+            <option value="{{_id}}">{{name}}</option>
+            {{/each}} 
+            </select>
 
-<form action="/addpurchase/{{releaseId}}" method="POST">
+            <button class='button' type="submit">Buy</button>
+            {{#if message}}
+            <h3>{{message}}</h3>
+            <a class='button btn-profile' href="/profile">Your profile</a>
+            {{/if}}
+            </form>
 
-<select name="collection" id="collection">
-{{#each user.collections}}
- <option value="{{_id}}">{{name}}</option>
-{{/each}} 
-</select>
-
-<button type="submit">Add album to selected collection</button>
-
-</form>
-
-{{#if message}}
-<h3>{{message}}</h3>
-<a href="/profile">Go back to your profile</a>
-{{/if}}
-
+            
+            </div>    
+    </div>
+</div>
