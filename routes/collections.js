@@ -55,7 +55,7 @@ router.get('/remove/:idCollection', loginCheck(), (req, res, next) => {
                         userByID.collections.pull(req.params.idCollection)
                         return userByID.save()
                         .then(()=> {
-                            res.redirect('/profile')
+                            res.redirect(`/collections/${req.user._id}`)
                         })
                     })                                   
                     
