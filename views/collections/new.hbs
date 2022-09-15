@@ -1,10 +1,20 @@
-<h2>Create the collection</h2>
-<form action="/collections/{{user._id}}/add" method="POST">
-	<label for="">Name: </label>
-	<input type="text" name="name">
+<div class="img-main ">
+	<div class="dark"> 
+		<div class="form-container">		
+			<form action="/collections/{{user._id}}/add" method="POST">
+				<h2>Create the collection</h2>
+				<div class="input-line">
+					<label for="">Name: </label>
+					<input type="text" name="name">
+				</div>
 
-	<label for="">Description: </label>
-	<input type="text" name="description">
+				<div class="input-line">
+					<label for="">Description: </label>
+					<input type="text" name="description">
+				</div>
 
-	<button type="sumbmit">Create</button>
-</form>
+				<button class='button login-btn' type="sumbmit">Create</button>
+			</form>
+		</div>
+	</div>
+</div>
