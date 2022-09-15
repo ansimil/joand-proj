@@ -1,6 +1,6 @@
 <h1>Collection {{collection.name}}</h1>
 <p>{{collection.description}}</p>
-{{#if auth}}
+{{#if ../buyBtn}}
 <a href="/collections/edit/{{collection._id}}">Edit</a>
 {{/if}}
 
@@ -24,12 +24,6 @@
 
         {{!-- TODO --}}
 
-        {{#if userPrice}}
-            <a href="/buy/:idOwener/:idBuyer">
-                <button>Buy</button>
-            </a>
-        {{/if}}
-
 
         <details>
             <summary>Tracklist:</summary>
@@ -39,10 +33,14 @@
             {{/each}}
             </ul>
         </details>
+        {{#if ../buyBtn}}
         <a href="/collections/{{../collection._id}}/remove/{{_id}}">Remove album from collection</a>  
+        {{/if}}
     {{/each}}
 {{/if}}
 
-{{#if auth}}
-<a href="/">Add Albums to the collection</a>
+
+{{#if ../buyBtn}}
+<a href="/">Add Album</a>
 {{/if}}
+
