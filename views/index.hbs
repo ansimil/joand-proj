@@ -1,21 +1,25 @@
-<div>
-<h1>Record Collection Market</h1>
-<h3>The Best Place to Catalog and Sell Your Records</h3>
+<div class="home-page">
+    <div>
+    
+    <div class="search">
+        <h3>The Best Place to Catalog and Sell Your Records</h3>
+    
+        <form action="/artists" method="GET">
+            <label for="query">Artist: </label>
+            <input type="text" id="query" name="q">
+            <button class="button" type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="buttons">
+        {{#unless auth}}
+            <a class="button" href="/login">Login</a>
+            <a class="button" href="/signup">Sign Up</a>
+        {{/unless}}
+    </div>
+
 </div>
 
 
-<div>
-<form action="/artists" method="GET">
-<label for="query">Artist Name</label>
-<input type="text" id="query" name="q">
-<button type="submit">Search</button>
-</form>
-</div>
 
-<div>
-    {{#unless auth}}
-         <a href="/login">Login</a>
-         <a href="/signup">Sign Up</a>
-    {{/unless}}
-</div>
 
