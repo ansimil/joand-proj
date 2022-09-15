@@ -208,10 +208,28 @@ ul {
 .addBtn:hover {
   color: rgb(213, 159, 159);
   background-color: rgb(72, 118, 187);
+  transform: translateY(-10px);
+  transition: 0.5s ease-out;
 }
 
 .mapAlbum {
   align-items: center;
+}
+
+.mapContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mapboxgl-popup-content a {
+  color: black;
+}
+
+.mapboxgl-popup {
+  background-color: rgba(116, 112, 112, 0.2);
+  border-radius: 5px;
 }
 
 .topContainer img {

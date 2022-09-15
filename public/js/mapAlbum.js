@@ -44,7 +44,7 @@ coordsAndIDs.forEach(coordAndID => {
 	new mapboxgl.Marker({
 		color: '#5fbbd0',
 	}).setLngLat(coordAndID.coordinates)
-	.setPopup(new mapboxgl.Popup().setHTML(`<a href="/collections/collection/${coordAndID.collectionId}">See in ${coordAndID.username} Collection</a>`))        
+	.setPopup(new mapboxgl.Popup().setHTML(`<a href="/collections/collection/${coordAndID.collectionId}">Check out ${coordAndID.username}'s Collection</a>`))        
     .addTo(mapAlbum)  
 })
 
