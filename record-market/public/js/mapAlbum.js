@@ -11,28 +11,42 @@ const mapAlbum = new mapboxgl.Map({
 
 mapAlbum.addControl(new mapboxgl.NavigationControl())
 
-const coords = []
+const coordsAndIDs = []
+const usersId = []
 
-const usersArrCoords = document.querySelectorAll('.usersCoo')
+const usersArrCoords = document.querySelectorAll('#usersCoordinates')
+
 usersArrCoords.forEach(user => {
-	let userCord = user.innerHTML
+	const userObj = {}
+	let userInfo = user.innerHTML
+	let userCord = userInfo.split('+')[0]
+	let userID = userInfo.split('+')[1]
+	let username = userInfo.split('+')[2]
+	console.log(userID)
 	const userCordArray = userCord.match(/\d+/g)
 	const lng =  userCordArray[0] + '.' + userCordArray[1] 
 	const lat =  userCordArray[2] + '.' + userCordArray[3] 
 	const dataCoord = [lng, lat]
-	coords.push(dataCoord)
+	userObj.userId = userID
+	userObj.coordinates = dataCoord
+	userObj.username = username
+	coordsAndIDs.push(userObj)
 })
 
-console.log (coords)
 
-coords.forEach(coord => {
+
+
+console.log (coordsAndIDs)
+
+coordsAndIDs.forEach(coordAndID => {
 	new mapboxgl.Marker({
 		color: '#5fbbd0',
-	}).setLngLat(coord)
-	.setPopup(new mapboxgl.Popup().setHTML("<h3>Hello World!</h3>"))        
+	}).setLngLat(coordAndID.coordinates)
+	.setPopup(new mapboxgl.Popup().setHTML(`<a href="/collections/${coordAndID.userId}">See in ${coordAndID.username} Collection</a>`))        
     .addTo(mapAlbum)  
 })
 
+// let linkToUser = `<a href="/collections/${coordAndID.userId}">Add to collection</a>`
 
 
 const user =  document.querySelector('#userCoord').innerHTML //'LngLat(13.25424296134969, 52.46167289022344)'
@@ -49,10 +63,4 @@ if (user !== '') {
 
 
 
-	
-	
-// const newYork = new mapboxgl.LngLat(-74.0060, 40.7128);
-// const losAngeles = new mapboxgl.LngLat(-118.2437, 34.0522);
-// newYork.distanceTo(losAngeles);
-	
 	

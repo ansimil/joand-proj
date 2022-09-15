@@ -9,7 +9,14 @@ const passport = require('passport')
 
 router.get('/:id', (req, res, next) => {
     User.findById(req.params.id)
-        .populate('collections')
+        .populate({
+            path: "collections",
+            model: "Collection",
+            populate: {
+                path: "albums",
+                model: "Album",
+            }
+        })
         .then(userFromDB => {
             res.render('collections/show', {user: userFromDB, auth: req.isAuthenticated() })
         })
