@@ -2,11 +2,11 @@
 {{#each user.collections}}
     <h2><a href="/collections/collection/{{_id}}">{{name}}</a></h2>
     <a href="/collections/collection/{{_id}}">
-    {{#each albums}}
+    {{!-- {{#each albums}}
         <h4>{{artist}}</h4>
         <p>{{name}}</p>
         <img src="{{imgPath}}" alt="cover {{name}}" height="100px" width="100px">
-    {{/each}}
+    {{/each}} --}}
     </a>
     {{#if ../auth}}
     <a href="/collections/remove/{{_id}}">Remove</a>

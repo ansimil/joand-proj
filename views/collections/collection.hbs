@@ -9,7 +9,9 @@
     {{#each collection.albums}}
         <h4>Artist: {{artist}}</h4>
         <p>Title: {{name}}</p>
-        <img src="{{imgPath}}" alt="cover {{name}}" height="300px" width="300px">
+        <a href="/album/{{discogsId}}">
+            <img src="{{imgPath}}" alt="cover {{name}}" height="300px" width="300px">
+        </a>
         <p>Release Year: {{release}}</p>
         
         {{#if price}}
