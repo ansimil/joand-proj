@@ -21,8 +21,23 @@ h1 {
 }
 
 
+
 /* Styling for Artist results page */
-#artistResults { 
+#artistResults .mainDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#artistResults h2 {
+   display: flex;
+   position: relative;
+   left: 100px
+}
+
+.container { 
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(4, 300px);
@@ -31,29 +46,106 @@ h1 {
 
 }
 
-#artistResults .subcontainer {
+.subcontainer {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  border: rgb(149, 144, 144) solid 1px;
   border-radius: 5px;
-  background-color: #e7f2f7;
+  /*background-color: white;*/
   
 }
 
 #artistResults .subcontainer img {
-  border-radius: 10px;
-  border: black solid 1px;
+  border-radius: 5px;
+  border: rgb(255, 255, 255) solid 1px;
 }
 
 #artistResults .subcontainer .showAlbums {
   padding: 10px;
   border: black solid 1px;
-  border-radius: 5px;
+  border-radius: 3px;
   background-color: white;
+}
 
-.nav-bar{
+/* Styling for Albums of the artist view */
+
+.artistAndBio {
+  display: flex;
+  width: 100vw;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.artistName {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bio {
+  width: 40vw
+}
+
+.albumContainer { 
+  display: grid;
+  justify-content: center;
+  align-items: flex-end;
+  grid-template-columns: repeat(6, 200px);
+  grid-auto-rows: minmax(300px, auto);
+  grid-gap: 40px;
+
+}
+
+details summary::-webkit-details-marker { display:none; }
+
+details {
+  width: 50%;
+  margin: 0 auto ;
+  background: #fefefe;
+  margin-bottom: .5rem;
+  box-shadow: 0 .1rem 1rem -.5rem rgba(0,0,0,.4);
+  border-radius: 5px;
+  overflow:auto;
+  color: black;
+  text-align: center;
+}
+
+summary {
+  padding: 0.25rem;
+  display: block;
+  background: rgb(255, 255, 255);
+  cursor: pointer;
+  color: black;
+}
+
+ul {
+  list-style: none;
+  text-decoration: none;
+}
+
+.albumSubcontainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  /*background-color: white;*/
+  
+}
+
+.albumSubcontainer img {
+  border-radius: 5px;
+  border: rgb(255, 255, 255) solid 1px;
+}
+
+
+
+
+.nav-bar {
   height: 100px;
   width: 100%;
   background-color: white;
@@ -64,7 +156,6 @@ h1 {
   align-items:center;
   justify-content:space-between;
   padding-left: 100px;
-
 }
 
 .home-link{
@@ -75,7 +166,6 @@ h1 {
 
 
 .navigation{
-  
   width: 150px;
   font-size: 24px;
   display: flex;
