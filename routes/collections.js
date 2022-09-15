@@ -68,7 +68,7 @@ router.get('/remove/:idCollection', loginCheck(), (req, res, next) => {
 
 
 //COLLECTION STRUCTURE
-router.get('/collection/:idCollection', (req, res, next) => {
+router.get('/collection/:idCollection', loginCheck(), (req, res, next) => {
     Collection.findById(req.params.idCollection)
             .populate('albums')
             .then(collectionByID => {
