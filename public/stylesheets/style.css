@@ -42,31 +42,41 @@ a {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(4, 300px);
-  grid-auto-rows: minmax(300px, auto);
+  grid-auto-rows: minmax(350px, auto);
   grid-gap: 40px;
 }
 
 .subcontainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
   border-radius: 5px;
   color: white;
+  background-color: rgba(116, 112, 112, 0.504);
 }
 
 #artistResults .subcontainer img {
   border-radius: 5px;
+  margin-bottom: 15px;
   border: rgb(255, 255, 255) solid 1px;
 }
 
 #artistResults .subcontainer .showAlbums {
+
+  color: white;
   padding: 10px;
-  border: black solid 1px;
+  background-color: #353535 ;
+  height: 40px;
+  width: 150px;
+  border: none;
   border-radius: 3px;
-  background-color: white;
-  color: black
+  box-sizing: border-box;
+  box-shadow:  1px 1px 6px 2px rgb(109, 109, 109);
+  text-align: center;      
 }
+
+
 
 .subcontainer:hover {
   background-color: rgba(116, 112, 112, 0.504);
@@ -173,7 +183,9 @@ ul {
   flex-direction: column;
   align-items: center;
   border-radius: 5px; 
+  background-color: rgba(116, 112, 112, 0.096);
 }
+
 .albumSubcontainer:hover {
   background-color: rgba(116, 112, 112, 0.504);
 }
@@ -270,9 +282,7 @@ ul {
   flex-direction: row;
   align-items:center;
   justify-content:space-between;
-  /* padding-left: 100px; */
   box-shadow: 5px 2px 26px 10px grey;
-  /* margin-bottom: 30px; */
   position: sticky;  
    top: 0;    
 
@@ -303,12 +313,8 @@ ul {
 .img-main{
   height: 100vh;
   background-image: url('/images/joanna-nix-walkup-Kp1Oz5fSxiw-unsplash.jpg');
-  
-
   background-position: center;
   background-attachment: fixed; 
- 
-
   background-repeat: no-repeat; 
   background-size: cover;
   display: flex;
@@ -325,7 +331,7 @@ ul {
     border: none;
     border-radius: 3px;
     box-sizing: border-box;
-    box-shadow:  2px 2px 6px 2px rgb(134, 134, 134);
+    box-shadow:  1px 1px 6px 2px rgb(109, 109, 109);;
     text-align: center;      
 }
 
@@ -350,7 +356,7 @@ ul {
 }
 
 .form-container{
-  background-color: rgba(255, 255, 255, 0.473);;  
+  background-color: rgba(255, 255, 255, 0.534);;  
   padding: 40px 60px 60px 40px;
   color: black;
   flex-direction: row;
@@ -441,8 +447,13 @@ input:focus {
   align-items:center;
   justify-content:center;
 }
+.main-greet{
+  font-size: 26px;
+  filter: drop-shadow(2px 2px 2px #333);
+}
+
 .greet {
-  font-size: 32px; 
+  font-size: 28px; 
   margin-bottom: 50px; 
 
 }
@@ -565,18 +576,10 @@ opacity: .9;
 .albums-collection-container{
   display: flex;
   flex-wrap: wrap;
-  
-  /* position: absolute; */
-  
-  /* top: 60px;
-  left: calc(50% - 300px); */
-
-  /* position: absolute; */
   height: 100%;
   width: 80vw;
   bottom: 20px;
-  /* left: calc(50% - 800px); */
- 
+
 }
 
 .album-container{
@@ -589,9 +592,7 @@ opacity: .9;
   padding: 40px 20px;
   margin: 15px;
   box-shadow: -1rem 0 3rem #000;
-/*   margin-left: -50px; */
   transition: 0.4s ease-out;
-  /* position: relative; */
   left: 0px;
 
 }
@@ -655,7 +656,8 @@ opacity: .9;
     border: none;
     border-radius: 3px;
     box-sizing: border-box;  
-    text-align: center;      
+    text-align: center;  
+    padding-top: 5px;     
   }
     
   .remove-btn:hover {
@@ -674,7 +676,8 @@ opacity: .9;
     border-radius: 3px;
     box-sizing: border-box;  
     text-align: center;  
-    padding-top: 5px;    
+    padding-top: 5px; 
+    margin-bottom: 5px;   
   }
     
   .buy-btn:hover {
@@ -683,3 +686,17 @@ opacity: .9;
   filter: drop-shadow(2px 2px 2px #333);
   }
   
+  .map-popup{
+    font-size: 12px;
+  }
+
+  .map-popup:focus{
+    outline: none;
+  }
+  .mapboxgl-popup:hover{
+    filter: drop-shadow(2px 2px 2px #333);
+  }
+
+  svg:hover{
+    transform: scale(1.32);
+  }
