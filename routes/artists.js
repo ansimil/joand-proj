@@ -41,8 +41,12 @@ router.get('/artist/:id', (req,res,next) => {
   db.getArtist(req.params.id, function(err, datas){
     let membersArr = []
     let linksArr = []
+    console.log(datas.urls)
     for (let i = 0; i < 5; i++ ){
-      linksArr.push(datas.urls[i])
+      console.log(datas.urls)
+      if(datas.urls){
+        linksArr.push(datas.urls[i])
+      }
     }
 
  
