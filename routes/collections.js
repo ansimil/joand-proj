@@ -45,7 +45,6 @@ router.post('/:id/add', loginCheck(), (req, res, next) => {
         .catch(err => next(err))
 })
 
-//collections/remove/{{_id}}
 
 router.get('/remove/:idCollection', loginCheck(), (req, res, next) => {
     Collection.findByIdAndDelete(req.params.idCollection)
@@ -58,10 +57,6 @@ router.get('/remove/:idCollection', loginCheck(), (req, res, next) => {
                             res.redirect(`/collections/${req.user._id}`)
                         })
                     })                                   
-                    
-                //console.log(req.user.collections)
-                //console.log(req.user)
-                
             })
             .catch(err => next(err))
 })
@@ -72,23 +67,16 @@ router.get('/collection/:idCollection', loginCheck(), (req, res, next) => {
     Collection.findById(req.params.idCollection)
             .populate('albums')
             .then(collectionByID => {
-                console.log(collectionByID)
                 User.find({ 'collections': collectionByID._id})
                 .then (users => {
-                    //console.log(typeof users[0]._id.valueOf())
-                    //console.log(typeof req.user._id.valueOf())
                     if (users[0]._id.valueOf() === req.user._id.valueOf()){
                     let buyBtn = true
-                    //console.log('matching user')
                     res.render('collections/collection', { collection: collectionByID, auth: req.isAuthenticated(), buyBtn: buyBtn })
                     }
                     else {
-                    //console.log('not matching')
                     res.render('collections/collection', { collection: collectionByID, auth: req.isAuthenticated()})    
                     }
                 })
-                //console.log(collectionByID)
-                
             })
             .catch(err => next(err))
 })

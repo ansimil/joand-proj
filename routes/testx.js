@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { default: axios } = require("axios");
-//const { Collection } = require("mongoose");
 const consumerKey = process.env.CONSUMER_KEY
 const secretKey = process.env.SECRET_KEY
 var Discogs = require('disconnect').Client;
@@ -33,12 +32,9 @@ router.get('/x/:id', (req,res,next) => {
         }
     })
     .then(users => {
-       // console.log("USERS: ", users)
         users.forEach(user => {
-           // console.log("USER", user)
             user.collections.forEach(collection => {
                 collection.albums.forEach(album => {
-                   //console.log(album.discogsId)
                     if (album.discogsId == id) {
                         usersWithAlbum.push(user.coordinates)
                     }

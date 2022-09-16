@@ -23,7 +23,6 @@ router.post("/signup", (req,res,next) => {
 		res.render('signup', { message: 'Your password needs to be min 6 characters', auth: req.isAuthenticated() })
 		return
 	}	
-	console.log(req.body)
 	if (coordinates.length === 0) {
 		res.render('signup', { message: 'Please choose your location on the map', auth: req.isAuthenticated() })
 		return	
@@ -57,14 +56,7 @@ router.post("/signup", (req,res,next) => {
 		})
 });
 
-// const name = 'Colection 0'
-// const description = 'Please add collection description'
-// Collection.create({ name, description})
-//  .then((createdCollection) => {
-//  User.findByIdAndUpdate(createdUser._id, {
-// 	$push: {collections: createdCollection }
-						
-// })
+
 
 
 router.get("/login", (req,res,next) => {        
@@ -81,13 +73,9 @@ router.post('/login', passport.authenticate('local', {
 router.get("/profile", loginCheck(), (req,res,next) => {
     const loggedUser = req.user    
     res.render('profile', {user : loggedUser, auth: req.isAuthenticated()})
-	//console.log(req.isAuthenticated())
-    console.log(loggedUser)
-	
 })
 
 router.get('/logout', (req, res, next) => {
-	//req.logout(err => next(err))  
     req.session.destroy()
     res.redirect('/')    
        

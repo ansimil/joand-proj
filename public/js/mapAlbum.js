@@ -2,11 +2,11 @@ const token = 'pk.eyJ1Ijoiam9hbm5hemllbGluc2thbSIsImEiOiJjbDgwODBpcDQwM2w0M3ZvNT
 
 mapboxgl.accessToken = token
 const mapAlbum = new mapboxgl.Map({
-	container: 'mapAlbum', // container ID
-	style:   'mapbox://styles/mapbox/light-v10', // style URL
-	center: [13.404954, 52.520008], // starting position [lng, lat]
-	zoom: 9, // starting zoom
-	// pitch: 100
+	container: 'mapAlbum', 
+	style:   'mapbox://styles/mapbox/light-v10', 
+	center: [13.404954, 52.520008],
+	zoom: 9, 
+	
 })
 
 mapAlbum.addControl(new mapboxgl.NavigationControl())
@@ -23,7 +23,6 @@ usersArrCoords.forEach(user => {
 	let userID = userInfo.split('+')[1]
 	let username = userInfo.split('+')[2]
 	let collectionId = userInfo.split('+')[3]
-	console.log(userID)
 	const userCordArray = userCord.match(/\d+/g)
 	const lng =  userCordArray[0] + '.' + userCordArray[1] 
 	const lat =  userCordArray[2] + '.' + userCordArray[3] 
@@ -36,10 +35,6 @@ usersArrCoords.forEach(user => {
 })
 
 
-
-
-console.log (coordsAndIDs)
-
 coordsAndIDs.forEach(coordAndID => {
 	new mapboxgl.Marker({
 		color: '#5fbbd0',
@@ -48,10 +43,9 @@ coordsAndIDs.forEach(coordAndID => {
     .addTo(mapAlbum)  
 })
 
-// let linkToUser = `<a href="/collections/${coordAndID.userId}">Add to collection</a>`
 
 
-const user =  document.querySelector('#userCoord').innerHTML //'LngLat(13.25424296134969, 52.46167289022344)'
+const user =  document.querySelector('#userCoord').innerHTML 
 if (user !== '') {
 	const userCord = user.match(/\d+/g)
 	const lng =  userCord[0] + '.' + userCord[1] 
