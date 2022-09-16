@@ -173,7 +173,9 @@ ul {
   flex-direction: column;
   align-items: center;
   border-radius: 5px; 
+  background-color: rgba(116, 112, 112, 0.096);
 }
+
 .albumSubcontainer:hover {
   background-color: rgba(116, 112, 112, 0.504);
 }
@@ -270,9 +272,7 @@ ul {
   flex-direction: row;
   align-items:center;
   justify-content:space-between;
-  /* padding-left: 100px; */
   box-shadow: 5px 2px 26px 10px grey;
-  /* margin-bottom: 30px; */
   position: sticky;  
    top: 0;    
 
@@ -303,12 +303,8 @@ ul {
 .img-main{
   height: 100vh;
   background-image: url('/images/joanna-nix-walkup-Kp1Oz5fSxiw-unsplash.jpg');
-  
-
   background-position: center;
   background-attachment: fixed; 
- 
-
   background-repeat: no-repeat; 
   background-size: cover;
   display: flex;
@@ -350,7 +346,7 @@ ul {
 }
 
 .form-container{
-  background-color: rgba(255, 255, 255, 0.473);;  
+  background-color: rgba(255, 255, 255, 0.534);;  
   padding: 40px 60px 60px 40px;
   color: black;
   flex-direction: row;
@@ -441,8 +437,13 @@ input:focus {
   align-items:center;
   justify-content:center;
 }
+.main-greet{
+  font-size: 26px;
+  filter: drop-shadow(2px 2px 2px #333);
+}
+
 .greet {
-  font-size: 32px; 
+  font-size: 28px; 
   margin-bottom: 50px; 
 
 }
@@ -565,18 +566,10 @@ opacity: .9;
 .albums-collection-container{
   display: flex;
   flex-wrap: wrap;
-  
-  /* position: absolute; */
-  
-  /* top: 60px;
-  left: calc(50% - 300px); */
-
-  /* position: absolute; */
   height: 100%;
   width: 80vw;
   bottom: 20px;
-  /* left: calc(50% - 800px); */
- 
+
 }
 
 .album-container{
@@ -589,9 +582,7 @@ opacity: .9;
   padding: 40px 20px;
   margin: 15px;
   box-shadow: -1rem 0 3rem #000;
-/*   margin-left: -50px; */
   transition: 0.4s ease-out;
-  /* position: relative; */
   left: 0px;
 
 }
@@ -655,7 +646,8 @@ opacity: .9;
     border: none;
     border-radius: 3px;
     box-sizing: border-box;  
-    text-align: center;      
+    text-align: center;  
+    padding-top: 5px;     
   }
     
   .remove-btn:hover {
@@ -674,7 +666,8 @@ opacity: .9;
     border-radius: 3px;
     box-sizing: border-box;  
     text-align: center;  
-    padding-top: 5px;    
+    padding-top: 5px; 
+    margin-bottom: 5px;   
   }
     
   .buy-btn:hover {
@@ -683,3 +676,17 @@ opacity: .9;
   filter: drop-shadow(2px 2px 2px #333);
   }
   
+  .map-popup{
+    font-size: 12px;
+  }
+
+  .map-popup:focus{
+    outline: none;
+  }
+  .mapboxgl-popup:hover{
+    filter: drop-shadow(2px 2px 2px #333);
+  }
+
+  svg:hover{
+    transform: scale(1.32);
+  }
