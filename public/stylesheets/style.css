@@ -42,31 +42,41 @@ a {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(4, 300px);
-  grid-auto-rows: minmax(300px, auto);
+  grid-auto-rows: minmax(350px, auto);
   grid-gap: 40px;
 }
 
 .subcontainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
   border-radius: 5px;
   color: white;
+  background-color: rgba(116, 112, 112, 0.504);
 }
 
 #artistResults .subcontainer img {
   border-radius: 5px;
+  margin-bottom: 15px;
   border: rgb(255, 255, 255) solid 1px;
 }
 
 #artistResults .subcontainer .showAlbums {
+
+  color: white;
   padding: 10px;
-  border: black solid 1px;
+  background-color: #353535 ;
+  height: 40px;
+  width: 150px;
+  border: none;
   border-radius: 3px;
-  background-color: white;
-  color: black
+  box-sizing: border-box;
+  box-shadow:  1px 1px 6px 2px rgb(109, 109, 109);
+  text-align: center;      
 }
+
+
 
 .subcontainer:hover {
   background-color: rgba(116, 112, 112, 0.504);
@@ -321,7 +331,7 @@ ul {
     border: none;
     border-radius: 3px;
     box-sizing: border-box;
-    box-shadow:  2px 2px 6px 2px rgb(134, 134, 134);
+    box-shadow:  1px 1px 6px 2px rgb(109, 109, 109);;
     text-align: center;      
 }
 
